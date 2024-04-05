@@ -10,7 +10,7 @@ const Search = () => {
         e.preventDefault()
         
    try {
-     const {data} = await axios.get(`http://localhost:4000/api/v1/product/search/${search.keyword}`)
+     const {data} = await axios.get(`https://mern-ecommerce-63lm.vercel.app/api/v1/product/search/${search.keyword}`)
      setSearch({...search, result:data})
      naviagate('/search')
    } catch (error) {

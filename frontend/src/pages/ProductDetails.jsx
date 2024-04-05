@@ -8,7 +8,7 @@ const ProductDetails = () => {
   const slug = useParams().slug;
   const getProductDetails = async () => {
    try {
-    const res = await axios.get("http://localhost:4000/api/v1/product/" + slug);
+    const res = await axios.get("https://mern-ecommerce-63lm.vercel.app/api/v1/product/" + slug);
     setProduct(res.data.product);
     getSimilarProduct(res.data?.product._id, res.data?.product.category._id);
    } catch (error) {
@@ -23,7 +23,7 @@ const ProductDetails = () => {
   const getSimilarProduct = async (pid, cid) => {
     try {
       const { data } = await axios.get(
-        `http://localhost:4000/api/v1/product/related-product/${pid}/${cid}`
+        `https://mern-ecommerce-63lm.vercel.app/api/v1/product/related-product/${pid}/${cid}`
       );
       setRelatedProducts(data?.products);
     } catch (error) {

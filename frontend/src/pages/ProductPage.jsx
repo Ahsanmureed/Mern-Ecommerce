@@ -7,7 +7,7 @@ const ProductPage = () => {
     const [products,setProducts] = useState([])
     const getAllProducts = async()=>{
       try {
-        const res = await axios.get("http://localhost:4000/api/v1/product/get-products")
+        const res = await axios.get("https://mern-ecommerce-63lm.vercel.app/api/v1/product/get-products")
        setProducts(res.data.products)
 
       } catch (error) {

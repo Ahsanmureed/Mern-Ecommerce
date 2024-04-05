@@ -19,7 +19,7 @@ const Login = () => {
     const handleSubmit =async(e)=>{
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:4000/api/v1/auth/login",{
+            const res = await axios.post("https://mern-ecommerce-63lm.vercel.app/api/v1/auth/login",{
                email:inputs.email,
                password:inputs.password
             },{withCredentials:true})
