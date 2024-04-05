@@ -11,7 +11,7 @@ dotenv.config();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin:"https://mern-ecommerce-dqm5.vercel.app/",
+    origin:"https://mern-ecommerce-dqm5.vercel.app",
     credentials:true
 }))
 // userRoutes
