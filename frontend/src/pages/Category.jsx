@@ -7,7 +7,7 @@ const Category = () => {
     const [cat,setCat] = useState([])
     const slug = useParams().slug;
 
-    console.log(slug);
+    
     const getProducts = async()=>{
         const res= await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/product-category/${slug}`)
         setProducts(res.data.products)
@@ -16,7 +16,7 @@ const Category = () => {
 useEffect(()=>{
    getProducts()
 },[])
-console.log(products);
+
   return (
     <div className=' mt-20'>
     <h1 className=' text-3xl font-poppins font-semibold uppercase'>{cat.name}</h1>

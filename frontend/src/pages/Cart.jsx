@@ -75,7 +75,7 @@ const Cart = () => {
       setLoading(false);
     }
   };
-  console.log(cart);
+ 
   return (
     <div className=" mt-24">
       <div className=" text-center text-2xl">

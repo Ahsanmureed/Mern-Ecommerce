@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Categories = () => {
     const categories= useCategory()
-    console.log(categories);
+   
   return (
     <div className=' mt-24'>
         <div className='  grid grid-cols-2 md:grid-cols-3 px-8 md:px-28 gap-6 '>

@@ -6,9 +6,8 @@ import toast from 'react-hot-toast';
 import {useParams} from "react-router-dom"
 const Profile = () => {
   const id= useParams().id;
-  console.log(id);
     const {auth,setAuth}= useContext(AuthContext)
-    console.log(auth);
+  
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
