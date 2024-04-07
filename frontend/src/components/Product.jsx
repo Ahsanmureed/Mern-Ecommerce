@@ -7,7 +7,7 @@ const Product = ({product}) => {
   return (
     <div className="  relative mx-10 my-6 flex  w-full max-w-xs flex-col overflow-hidden rounded-lg border-2 border-gray-100 bg-white shadow-md">
 <Link className="relative mx-3 mt-3 flex items-center  overflow-hidden rounded-xl" to={`/product/${product.slug}`}>
-<img className=" h-[50vh]  md:w-72" src={product.photo} alt="product image" />
+<img className=" h-[50vh]  object-center md:w-72" src={product.photo} alt="product image" />
 </Link>
     
 

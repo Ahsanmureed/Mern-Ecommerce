@@ -25,7 +25,7 @@ useEffect(()=>{
         
         {
             products?.map((product)=>(
-                <div className='  flex items-center justify-center'><Product product={product}/></div>
+                <div className='  flex items-center justify-center'><Product key={product._id} product={product}/></div>
             ))
         }
     </div>

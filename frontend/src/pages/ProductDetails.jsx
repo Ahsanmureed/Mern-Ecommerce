@@ -77,7 +77,7 @@ const ProductDetails = () => {
     <div className=" md:grid grid-cols-3">
     {relatedProducts?.map((product)=>(
       
-      <div className='  flex items-center justify-center'><Product product={product}/></div>
+      <div className='  flex items-center justify-center'><Product key={product._id} product={product}/></div>
     ))}
 </div>
 </div>: ""}

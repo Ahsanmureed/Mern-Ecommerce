@@ -16,7 +16,8 @@ const Cart = () => {
 
     try {
       let total = 0;
-      cart?.map((item) => {
+      cart?.map((item,id) => {
+       
         total = total + item.price;
       });
       return total.toLocaleString("en-US", {
