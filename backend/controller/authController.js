@@ -70,7 +70,7 @@ const loginUser =async(req,res)=>{
             message: "login successfully",
             user: {
               _id: user._id,
-              name: user.username,
+              username: user.username,
               email: user.email,
               phone: user.phone,
               address: user.address,
@@ -80,22 +80,22 @@ const loginUser =async(req,res)=>{
           });
        
 }
-const refetchUser =async (req,res)=>{
-    const token  = req.cookies.token;
-    if(!token){
-     return res.status(401).json({
-        success:false,
-        message:"You are not authenticated Person"
-     })
-    }
-    jwt.verify(token,process.env.JWT_SECRET_KEY,(err,data)=>{
-        return res.status(200).json(data)
-    })
-}
-const logout=(req,res)=>{
-    res.clearCookie("token",{sameSite:"none",secure:true}).status(200).json({
-        success:true,
-        message:"User Logout Successfully"
-    })
-}
-export {signupUser,loginUser,refetchUser,logout}
+
+const updateUser = async (req, res) => {
+    try {
+      if (req.body.password) {
+        req.body.password = await bcrypt.hash(req.body.password, 10);
+      }
+      const updatedUser = await userModel.findByIdAndUpdate(
+        req.params.id,
+        { $set: req.body },
+        { new: true }
+      );
+      return res.status(200).json({
+        success: true,
+        message: "Updated user successfully",
+        updatedUser,
+      });
+    } catch (error) {}
+  };
+export {signupUser,loginUser,updateUser}

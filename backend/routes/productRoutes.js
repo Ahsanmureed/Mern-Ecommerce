@@ -1,5 +1,5 @@
 import express from "express";
-import { addProduct, deleteProductController,brainTreePaymentController,realtedProductController,searchProductController, getProductController, getSingleProductController,braintreeTokenController, updateProductController } from "../controller/productController.js";
+import { addProduct, deleteProductController,brainTreePaymentController,realtedProductController,searchProductController, getProductController, getSingleProductController,braintreeTokenController, updateProductController, productCategoryController } from "../controller/productController.js";
 const productRouter = express.Router();
 productRouter.post("/create",addProduct)
 productRouter.put("/:id",updateProductController)
@@ -15,5 +15,5 @@ productRouter.get("/braintree/token", braintreeTokenController);
 productRouter.post("/braintree/payment",  brainTreePaymentController);
 //similar product
 productRouter.get("/related-product/:pid/:cid", realtedProductController);
-
+productRouter.get("/product-category/:slug", productCategoryController);
 export default productRouter;

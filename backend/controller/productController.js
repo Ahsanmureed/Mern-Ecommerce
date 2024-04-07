@@ -3,7 +3,7 @@ import slugify from "slugify"
 import orderModel from "../models/orderModel.js";
 import braintree from "braintree";
 import dotenv from "dotenv";
-
+import categoryModel from "../models/categoryModel.js";
 dotenv.config();
 
 //payment gateway
@@ -205,6 +205,7 @@ const deleteProductController = async (req, res) => {
     cart.map((i) => {
       total += i.price;
     });
+    
     let newTransaction = gateway.transaction.sale(
       {
         amount: total,
@@ -218,7 +219,7 @@ const deleteProductController = async (req, res) => {
           const order = new orderModel({
             products: cart,
             payment: result,
-            //  buyer: req.auth.user._id,
+            
           }).save();
           res.json({ ok: true });
         } else {
@@ -275,6 +276,25 @@ const deleteProductController = async (req, res) => {
     });
   }
 };
+// get products by catgory
+const productCategoryController = async (req, res) => {
+  try {
+    const category = await categoryModel.findOne({slug: req.params.slug });
+    const products = await productModel.find({ category }).populate("category");
+    res.status(200).send({
+      success: true,
+      category,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      error,
+      message: "Error While Getting products",
+    });
+  }
+};
 
 
-export {addProduct,getProductController,searchProductController,realtedProductController,getSingleProductController,deleteProductController,updateProductController,brainTreePaymentController,braintreeTokenController}
+export {addProduct,getProductController,searchProductController,realtedProductController,getSingleProductController,deleteProductController,updateProductController,brainTreePaymentController,braintreeTokenController,productCategoryController}
