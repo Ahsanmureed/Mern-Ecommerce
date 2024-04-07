@@ -48,7 +48,7 @@ const NavBar = () => {
 <Link className="hidden md:flex  "  to={'/login'}>Login</Link></> }
 <Link  className="  flex " to={"/cart"}>
   <FaShoppingCart />
-  <div className=" absolute top-0  right-[20px] md:top-0  md:right-1.5"><Badge
+  <div className=" absolute top-0  right-[19px] md:top-0  md:right-1.5"><Badge
       
       count={cart?.length}
       showZero
