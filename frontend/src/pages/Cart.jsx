@@ -47,7 +47,7 @@ const Cart = () => {
  //get payment gateway token
  const getToken = async () => {
   try {
-    const { data } = await axios.get("https://mern-ecommerce-63lm.vercel.app/api/v1/product/braintree/token");
+    const { data } = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/braintree/token`);
     setClientToken(data?.clientToken);
   } catch (error) {
     console.log(error);
@@ -59,10 +59,11 @@ const Cart = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post("https://mern-ecommerce-63lm.vercel.app/api/v1/product/braintree/payment", {
+      const { data } = await axios.post(`${import.meta.env.VITE_URL}/api/v1/product/braintree/payment`, {
         nonce,
         cart,
         auth
+       
       });
       setLoading(false);
       localStorage.removeItem("cart");
@@ -74,12 +75,12 @@ const Cart = () => {
       setLoading(false);
     }
   };
-  console.log(cart,auth);
+  console.log(cart);
   return (
     <div className=" mt-24">
       <div className=" text-center text-2xl">
         <h1 className=" font-semibold">
-          {auth?.user ? `Hello ${auth.user.name}` : ""}
+          {auth?.user ? `Hello ${auth.user.username}` : ""}
         </h1>
 
         <p className="text-center mb-7">

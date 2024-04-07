@@ -17,13 +17,12 @@ const Menu = () => {
   return (
     <div className='absolute top-0  right-0 bg-gray-200 duration-200 w-[80%] h-[100vh]'>
        <div className=' flex text-4xl mt-4  justify-end'> <IoCloseSharp /></div>
-          <ul className=' flex items-center flex-col gap-12 text-2xl font-medium mt-36'>
-       <li className=' uppercase'>Home</li>
-       <li className=' uppercase'>Categories</li>
-       <li className=' uppercase'>Shop</li>
-       <li className=' uppercase'>Contact</li>
-       {auth.user?(<><Link to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link><li className=' uppercase'>Register</li></Link>
-     <Link><li className=' uppercase'>Login</li></Link></>)}
+          <ul className=' flex items-center flex-col gap-20 text-2xl font-medium mt-44'>
+       <Link to={'/'}><li className=' uppercase'>Home</li></Link>
+      <Link to={'/categories'}><li className=' uppercase'>Categories</li></Link> 
+         
+       {auth.user?(<> <Link className=' uppercase' to={'/dashboard'}>Dashboard</Link>  <Link to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link to={'/register'}><li className=' uppercase'>Register</li></Link>
+     <Link to={'/login'}><li className=' uppercase'>Login</li></Link></>)}
       </ul>
       
     </div>

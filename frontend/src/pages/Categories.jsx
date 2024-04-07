@@ -1,0 +1,21 @@
+import React from 'react'
+import useCategory from '../hooks/useCategory'
+import { Link } from 'react-router-dom';
+
+const Categories = () => {
+    const categories= useCategory()
+    console.log(categories);
+  return (
+    <div className=' mt-24'>
+        <div className='  grid grid-cols-2 md:grid-cols-3 px-8 md:px-28 gap-6 '>
+            {
+                categories?.map((category)=>(
+                    <Link to={`/category/${category.slug}`}><div className=' w-[40vw] md:w-[20vw] border-2 px-4 py-20 flex rounded-md bg-blue-500  text-white text-3xl font-poppins font-semibold    justify-center'><h1>{category.name}</h1></div></Link>
+                ))
+            }
+        </div>
+    </div>
+  )
+}
+
+export default Categories
