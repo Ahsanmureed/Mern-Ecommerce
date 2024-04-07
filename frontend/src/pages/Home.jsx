@@ -5,7 +5,7 @@ import Categories from './Categories'
 const Home = () => {
   return (
     <div className=' '>
-    <div className='md:flex-row w-auto  md:h-[100vh]  hello  md:px-16    flex-col-reverse flex md:flex items-center gap-24 md:justify-between  bg-gray-50  md:pt-20'>
+    <div className='md:flex-row w-auto h-[85vh]  md:h-[100vh]  hello  md:px-16    flex-col-reverse flex md:flex items-center gap-24 md:justify-between  bg-gray-50  md:pt-20'>
         <div>
             <h1 className=' text-[21px]  text-center'>#NEW SUMMER COLLECTION 20224</h1>
             <h1 className=' text-center  text-4xl md:text-7xl font-semibold'>ARRIVALS SALES</h1>
