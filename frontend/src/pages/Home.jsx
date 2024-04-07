@@ -11,7 +11,7 @@ const Home = () => {
             <h1 className=' text-center  text-4xl md:text-7xl font-semibold'>ARRIVALS SALES</h1>
             <button className=' mb-3  uppercase mx-auto text-white py-2  mt-3  hover:transition hover:scale-95 hover:duration-150 px-4 rounded-md flex bg-black text-center'>Shop Now</button>
         </div>
-        <img className=' mb-20 md:mb-0  w-[70%] md:h-[86vh]   h-[100vw]  md:w-[31vw]   ' src={bg} alt="" />
+        <img className=' mb-10 md:mb-0  w-[70%] md:h-[86vh]   h-[100vw]  md:w-[31vw]   ' src={bg} alt="" />
         </div>
         <h1 className=' text-3xl font-poppins font-semibold mt-9 mb-0'>Categories:</h1>
         <Categories/>
