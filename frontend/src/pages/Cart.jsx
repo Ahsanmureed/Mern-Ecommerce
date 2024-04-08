@@ -3,6 +3,7 @@ import { AuthContext } from "../Context/UserContext";
 import { CartContext } from "../Context/CartContext";
 import {useNavigate} from "react-router-dom"
 import DropIn from "braintree-web-drop-in-react";
+import toast from 'react-hot-toast';
 import axios from "axios"
 const Cart = () => {
   const { cart, setCart } = useContext(CartContext);
@@ -69,7 +70,8 @@ const Cart = () => {
       setLoading(false);
       localStorage.removeItem("cart");
       setCart([]);
-      navigate("/dashboard/user/orders");
+      toast.success("Payment Successfull")
+      navigate("/cart");
       // toast.success("Payment Completed Successfully ");
     } catch (error) {
       console.log(error);
