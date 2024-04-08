@@ -42,11 +42,11 @@ const ProductDetails = () => {
    <div>
 
     {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>:  <div>
-      <div className=" pt-28 px-12 md:flex items-center  md:justify-between ">
+      <div className=" pt-28 md:flex items-center  md:justify-between ">
       <div>
-        <img className=" rounded-md md:w-[60vh] md:h-[70vh]" src={product.photo} alt="" />
+        <img className=" px-8 rounded-md  md:w-[60vh] md:h-[70vh]" src={product.photo} alt="" />
       </div>
-      <div className=" md:w-[57vw] mt-9 md:mt-0 ">
+      <div className=" md:w-[57vw]  px-8 w-[90vw] mt-9 md:mt-0 ">
         <h1 className=" text-3xl font-poppins font-semibold">
           {product.name}
         </h1>
