@@ -2,16 +2,21 @@ import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Product from '../components/Product'
+import LoaderLoader from "../components/LoaderLoader"
 import { CartContext } from "../Context/CartContext";
+import toast from 'react-hot-toast';
 const ProductDetails = () => {
+  const [loader,setLoader]=useState(false)
   const {cart,setCart}= useContext(CartContext)
   const [product, setProduct] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const slug = useParams().slug;
   const getProductDetails = async () => {
+    setLoader(true)
    try {
-    const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/` + slug);
+    const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/${slug}`);
     setProduct(res.data.product);
+    setLoader(false)
     getSimilarProduct(res.data?.product._id, res.data?.product.category._id);
    } catch (error) {
     
@@ -19,7 +24,7 @@ const ProductDetails = () => {
   };
   useEffect(() => {
     getProductDetails();
-  }, []);
+  }, [slug]);
 
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
@@ -34,10 +39,12 @@ const ProductDetails = () => {
   };
   
   return (
-    <div>
+   <div>
+
+    {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>:  <div>
       <div className=" pt-28 px-12 md:flex items-center  md:justify-between ">
       <div>
-        <img className=" rounded-md" src={product.photo} alt="" />
+        <img className=" rounded-md md:w-[60vh] md:h-[70vh]" src={product.photo} alt="" />
       </div>
       <div className=" md:w-[57vw] mt-9 md:mt-0 ">
         <h1 className=" text-3xl font-poppins font-semibold">
@@ -50,7 +57,7 @@ const ProductDetails = () => {
         <div className="flex items-center gap-4 mt-4">
           {" "}
          
-          <button onClick={()=>{setCart([...cart,product]); localStorage.setItem("cart",JSON.stringify([...cart,product]))}} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button onClick={()=> {setCart([...cart,product]);  localStorage.setItem("cart",JSON.stringify([...cart,product]),toast.success("Item Added Successfully"))}} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="mr-2 h-6 w-6"
@@ -81,7 +88,8 @@ const ProductDetails = () => {
     ))}
 </div>
 </div>: ""}
-    </div>
+    </div>}
+   </div>
   );
 };
 

@@ -5,6 +5,7 @@ import axios from 'axios'
 import {useNavigate,useLocation} from "react-router-dom"
 import { useContext } from 'react'
 import { AuthContext } from '../Context/UserContext'
+import toast from 'react-hot-toast';
 const Login = () => {
     const Location = useLocation();
     const {auth,setAuth} = useContext(AuthContext)
@@ -24,6 +25,7 @@ const Login = () => {
                password:inputs.password
             },{withCredentials:true})
            if(res.data.success){
+            toast.success(res.data.message)
             navigate(Location.state|| '/')
             setAuth({...auth,
             user:res.data.user,

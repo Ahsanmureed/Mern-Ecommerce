@@ -9,6 +9,7 @@ import { FaShoppingCart } from "react-icons/fa";
 import  { Toaster } from 'react-hot-toast';
 import { useState } from "react";
 import {useNavigate} from "react-router-dom"
+import toast from 'react-hot-toast';
 import Menu from "./Menu";
 import logo from "../assets/images/logo.svg";
 import { useContext } from "react";
@@ -45,6 +46,7 @@ const NavBar = () => {
       user: null,
       token: "",
     })
+    toast.success("Logout Successfully")
     localStorage.clear("auth")
     
   };
