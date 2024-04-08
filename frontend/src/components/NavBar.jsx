@@ -86,8 +86,8 @@ const NavBar = () => {
   <div className=" ">
   <IoIosSearch className="  text-3xl" onClick={()=>setSearchOpen(!searchOpen)}/>
 {searchOpen &&  <form className=" duration-1000 ease-in-out  fixed left-0 items-center justify-center top-0 right-0 w-screen bg-gray-100 pl-1 pr-0  py-4 z-30 [h-10vh] " onSubmit={handleSubmit}>
-    <input required autoCapitalize='none' autoComplete='off' autoCorrect='off'  value={search.keyword}  onChange={(e)=> setSearch({...search,keyword:e.target.value})} placeholder='Search' className=' px-1 font-medium  outline-none border-2 rounded-md py-[6px] w-[60vw] md:w-[27vw] mr-2' type="text" />
-    <button type='submit' className=' text-center px-[10px] py-[6px] md:px-4 md:py-1 bg-blue-500 text-white rounded-md '>Search</button>
+    <input required autoCapitalize='none' autoComplete='off' autoCorrect='off'  value={search.keyword}  onChange={(e)=> setSearch({...search,keyword:e.target.value})} placeholder='Search' className=' px-1 font-medium  outline-none border-2 rounded-md py-[5px] w-[60vw] md:w-[27vw] mr-2' type="text" />
+    <button type='submit' className=' text-center px-[10px] py-[5px] md:px-4 md:py-1 bg-blue-500 text-white rounded-md '>Search</button>
     <IoCloseSharp onClick={()=> setSearchOpen(!searchOpen)} className=" absolute right-0 top-6 text-4xl"/>
   
    </form>}
