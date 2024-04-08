@@ -15,7 +15,7 @@ const Menu = () => {
      
   const {auth,setAuth} = useContext(AuthContext)
   return (
-    <div className='absolute top-0  right-0 bg-gray-200 duration-200 w-[80%] h-[100vh]'>
+    <div className='absolute top-0  ease-in-out duration-1000  right-0 bg-gray-200  w-[80%] h-[100vh]'>
        <div className=' flex text-4xl mt-4  justify-end'> <IoCloseSharp /></div>
           <ul className=' flex items-center flex-col gap-20 text-2xl font-medium mt-44'>
        <Link to={'/'}><li className=' uppercase'>Home</li></Link>
