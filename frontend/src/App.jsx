@@ -27,10 +27,10 @@ const App = () => {
    <NavBar/>
    <Routes>
     <Route path='/' element={<Home/>}/>
-    <Route path='/login' element={<Login/>}/>
+    <Route path='/login' element={!auth.user ? <Login/> : <Dashboard/>}/>
    
-    <Route path='/dashboard' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
-    <Route path='/profile/:id' element={<ProtectedRoutes><Profile/></ProtectedRoutes>}/>
+    <Route path='/dashboard/:id' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
+   
   
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>
@@ -38,7 +38,7 @@ const App = () => {
     <Route path='/categories' element={<Categories/>}/>
     <Route path='/search' element={<SearchResult/>}/>
     
-    <Route path='/register' element={<Register/>}/>
+    <Route path='/register' element={!auth.user ? <Register/> : <Dashboard/>}/>
     <Route path='/about' element={<About/>}/>
    </Routes>
    
