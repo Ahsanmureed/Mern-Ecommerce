@@ -66,7 +66,7 @@ const NavBar = () => {
 <Link className="flex " to={'/'}>Home</Link>
 <Link  className="flex "  to={'/categories'}>Categories</Link>
 
-{auth?.user?<><Link to={"/login"} className="flex "  onClick={handleLogout}>Logout</Link> <Link to={'/dashboard'} className="flex  " >Dashboard</Link></> :<><Link className=":flex  "  to={'/register'}>Singup</Link>
+{auth?.user?<><Link to={"/login"} className="flex "  onClick={handleLogout}>Logout</Link> <Link to={`/dashboard/${auth?.user?._id}`} className="flex  " >Dashboard</Link></> :<><Link className=":flex  "  to={'/register'}>Singup</Link>
 <Link className="flex  "  to={'/login'}>Login</Link></> }
 <Link  className="  flex " to={"/cart"}>
   <FaShoppingCart className=" mr-3" />
