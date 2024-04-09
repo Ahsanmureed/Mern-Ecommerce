@@ -42,7 +42,7 @@ const ProductDetails = () => {
    <div>
 
     {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>:  <div>
-      <div className=" pt-28 md:flex items-center  md:justify-between ">
+      <div className=" pt-28 md:flex items-center  md:px-8 ">
       <div>
         <img className=" px-8 rounded-md  md:w-[60vh] md:h-[70vh]" src={product.photo} alt="" />
       </div>
