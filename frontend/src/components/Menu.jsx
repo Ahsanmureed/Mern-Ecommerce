@@ -21,7 +21,7 @@ const Menu = () => {
        <Link to={'/'}><li className=' uppercase'>Home</li></Link>
       <Link to={'/categories'}><li className=' uppercase'>Categories</li></Link> 
          
-       {auth.user?(<> <Link className=' uppercase' to={'/dashboard'}>Dashboard</Link>  <Link to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link to={'/register'}><li className=' uppercase'>Register</li></Link>
+       {auth.user?(<> <Link className=' uppercase' to={`/dashboard/${auth?.user._id}`}>Dashboard</Link>  <Link to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link to={'/register'}><li className=' uppercase'>Register</li></Link>
      <Link to={'/login'}><li className=' uppercase'>Login</li></Link></>)}
       </ul>
       
