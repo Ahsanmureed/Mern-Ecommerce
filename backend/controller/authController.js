@@ -2,7 +2,7 @@ import userModel from "../models/userModel.js"
 import bcrypt from 'bcrypt'
 import jwt from "jsonwebtoken"
 const signupUser = async(req,res)=>{
-    const { username, email, password, phone, address } = req.body;;
+    const { username, email, password, phone, address } = req.body;
 
         // validation
         if(!username || !email || !password || !phone || !address){

@@ -263,6 +263,13 @@ const deleteProductController = async (req, res) => {
         _id: { $ne: pid },
       })
       .populate("category");
+
+
+
+
+
+
+      
     res.status(200).send({
       success: true,
       products,
