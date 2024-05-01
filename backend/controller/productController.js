@@ -65,11 +65,17 @@ const addProduct = async (req, res) => {
 };
  const getProductController = async (req, res) => {
   try {
+    const page= req.query.page? parseInt(req.query.page): 1;
+    const size =req.query.size? parseInt(req.query.size):10;
+    const skip = (page-1)*size;   
+    const productCount = await productModel.find({});
+   
     const products = await productModel
-      .find({})
+      .find({}).skip(skip).limit(size)
       .populate("category")
     res.status(200).send({
       success: true,
+      count:productCount.length,
       counTotal: products.length,
       message: "ALlProducts ",
       products,

@@ -16,4 +16,5 @@ productRouter.post("/braintree/payment",  brainTreePaymentController);
 //similar product
 productRouter.get("/related-product/:pid/:cid", realtedProductController);
 productRouter.get("/product-category/:slug", productCategoryController);
+
 export default productRouter;
