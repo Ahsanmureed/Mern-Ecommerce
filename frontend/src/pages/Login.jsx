@@ -32,6 +32,9 @@ const Login = () => {
         token:res.data.token})
         localStorage.setItem("auth",JSON.stringify(res.data))
            }
+           else{
+            toast("Invalid Credentials")
+           }
         } catch (error) {
             console.log(error);
         }
