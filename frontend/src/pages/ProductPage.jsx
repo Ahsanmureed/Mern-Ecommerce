@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import Product from '../components/Product'
 import {Link, useNavigate} from "react-router-dom"
+import LoaderLoader from '../components/LoaderLoader'
 
 const ProductPage = () => {
     const Navigate= useNavigate()
@@ -57,31 +58,33 @@ const ProductPage = () => {
       loadMore();
     }, [page]);
   return (
-    <><div className='  md:grid md:grid-cols-3   '>
+    <>
+
+  {loading? <LoaderLoader/> :   <div><div className='  md:grid md:grid-cols-3   '>
         
-    {products?.map((product)=>(
-        <div className='  flex items-center justify-center'><Product key={product._id} product={product} /></div>
-    ))}
-  
-</div>
-{products && products.length < total && (
-          <button
-            className=" flex mx-auto bg-blue-500 px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg" 
-            onClick={(e) => {
-              e.preventDefault();
-              setPage(page + 1);
-            }}
-          >
-            {loading ? (
-              "Loading ..."
-            ) : (
-              <>
-                {" "}
-                Loadmore 
-              </>
-            )}
-          </button>
-        )}
+        {products?.map((product)=>(
+            <div className='  flex items-center justify-center'><Product key={product._id} product={product} /></div>
+        ))}
+      
+    </div>
+    {products && products.length < total && (
+              <button
+                className=" flex mx-auto bg-blue-500 px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg" 
+                onClick={(e) => {
+                  e.preventDefault();
+                  setPage(page + 1);
+                }}
+              >
+                {loading ? (
+                  "Loading ..."
+                ) : (
+                  <>
+                    {" "}
+                    Loadmore 
+                  </>
+                )}
+              </button>
+            )}</div>}
 </>
   )
 }
