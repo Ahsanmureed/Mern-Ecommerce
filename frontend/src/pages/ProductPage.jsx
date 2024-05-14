@@ -73,7 +73,7 @@ const ProductPage = () => {
 {products && products.length < total && (
           <button
           disabled={loadingMore}
-            className=" flex mx-auto bg-blue-500 px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg" 
+            className={ `flex mx-auto ${loadingMore? "bg-blue-300" : "bg-blue-500"} px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg` }
             onClick={(e) => {
               e.preventDefault();
               setPage(page + 1);
