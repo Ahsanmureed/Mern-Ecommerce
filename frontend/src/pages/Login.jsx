@@ -7,6 +7,7 @@ import { useContext } from 'react'
 import { AuthContext } from '../Context/UserContext'
 import toast from 'react-hot-toast';
 const Login = () => {
+    const [loading, setLoading] = useState(false);
     const Location = useLocation();
     const {auth,setAuth} = useContext(AuthContext)
     const navigate = useNavigate();
@@ -19,6 +20,7 @@ const Login = () => {
     }
     const handleSubmit =async(e)=>{
         e.preventDefault();
+        setLoading(true)
         try {
             const res = await axios.post(`${import.meta.env.VITE_URL}/api/v1/auth/login`,{
                email:inputs.email,
@@ -37,6 +39,7 @@ const Login = () => {
            }
         } catch (error) {
             console.log(error);
+            setLoading(false);
         }
     }
   return (
@@ -52,7 +55,7 @@ const Login = () => {
             <input onChange={handleChange} className=' mt-1 gap-2 border-2 outline-none rounded-md' type="email" name="email"  />
             <label className='mt-3' htmlFor="password">Password:</label>
             <input onChange={handleChange} name='password' className='mt-1 border-2 outline-none rounded-md' type="password" />
-            <button type='submit' className=" mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">Login</button>
+            <button  type='submit' className={ ` ${loading? "bg-blue-300" :"bg-blue-500"} mt-3  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full`} disabled={loading}>{loading ? 'Logging in...' : 'Login'}</button>
             <h1 className=' mt-2 text-center'>Don't have an acoount? <Link className=' text-blue-700' to={"/register"}>Register</Link></h1>
         </form>
     </div>

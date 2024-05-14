@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios"
 import toast from 'react-hot-toast';
 const Register = () => {
+  const [loading, setLoading] = useState(false);
     const navigate = useNavigate()
     const [inputs,setInputs]=useState({
         username:"",
@@ -18,6 +19,7 @@ setInputs({...inputs,[e.target.name]:e.target.value})
     }
 const handleSubmit =async (e)=>{
    e.preventDefault();
+   setLoading(true)
    try {
     const res =await axios.post(`${import.meta.env.VITE_URL}/api/v1/auth/register`,{
         username:inputs.username,
@@ -35,7 +37,9 @@ const handleSubmit =async (e)=>{
     // }
     
    } catch (error) {
+    setLoading(false)
     toast.error("User Already Registered")
+    
    }
 }
     
@@ -95,10 +99,11 @@ const handleSubmit =async (e)=>{
           name="address"
         />
         <button
+        disabled={loading}
          type="submit"
-          className=" mt-3 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full"
+          className={` ${loading? "bg-blue-300" :"bg-blue-500"} mt-3  hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full`}
         >
-          Signup
+          {loading ? 'Signing up...' : 'Sign Up'}
         </button>
         <h1 className=" mt-2 text-center">
           Already have an acoount?{" "}
