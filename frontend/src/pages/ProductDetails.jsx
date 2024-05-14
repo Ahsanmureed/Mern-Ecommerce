@@ -28,12 +28,15 @@ const ProductDetails = () => {
 
   //get similar product
   const getSimilarProduct = async (pid, cid) => {
+    setLoader(true);
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_URL}/api/v1/product/related-product/${pid}/${cid}`
       );
+      setLoader(false)
       setRelatedProducts(data?.products);
     } catch (error) {
+      setLoader(false)
       console.log(error);
     }
   };

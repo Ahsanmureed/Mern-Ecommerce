@@ -9,6 +9,7 @@ const ProductPage = () => {
     const [products,setProducts] = useState([])
     const [page,setPage]= useState(1);
     const [loading, setLoading] = useState(false);
+    const [loadingMore, setLoadingMore] = useState(false);
     const [total, setTotal] = useState(0);
     const getAllProducts = async()=>{
       try {
@@ -36,8 +37,9 @@ const ProductPage = () => {
         
     },[])
     const loadMore = async () => {
+      setLoadingMore(true)
       try {
-        setLoading(true);
+       
          const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/get-products`,{
           params:{
             page:page,
@@ -46,11 +48,11 @@ const ProductPage = () => {
         }
       
     )
-        setLoading(false);
+       setLoadingMore(false)
         setProducts([...products, ...data?.products]);
       } catch (error) {
         console.log(error);
-        setLoading(false);
+        setLoadingMore(false)
       }
     };
     useEffect(() => {
@@ -58,33 +60,37 @@ const ProductPage = () => {
       loadMore();
     }, [page]);
   return (
-    <>
-
-  {loading? <LoaderLoader/> :   <div><div className='  md:grid md:grid-cols-3   '>
+    <><div>{loading ? <LoaderLoader/> : <div className='  md:grid md:grid-cols-3   '>
         
-        {products?.map((product)=>(
-            <div className='  flex items-center justify-center'><Product key={product._id} product={product} /></div>
-        ))}
-      
-    </div>
-    {products && products.length < total && (
-              <button
-                className=" flex mx-auto bg-blue-500 px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg" 
-                onClick={(e) => {
-                  e.preventDefault();
-                  setPage(page + 1);
-                }}
-              >
-                {loading ? (
-                  "Loading ..."
-                ) : (
-                  <>
-                    {" "}
-                    Loadmore 
-                  </>
-                )}
-              </button>
-            )}</div>}
+    {products?.map((product)=>(
+        <div className='  flex items-center justify-center'><Product key={product._id} product={product} /></div>
+    ))}
+  
+</div>}
+
+
+
+{products && products.length < total && (
+          <button
+          disabled={loadingMore}
+            className=" flex mx-auto bg-blue-500 px-4 hover:bg-blue-600 py-2 text-white text-[20px] font-medium rounded-lg" 
+            onClick={(e) => {
+              e.preventDefault();
+              setPage(page + 1);
+            }}
+          >
+            {loadingMore ? (
+              "Loading ..."
+            ) : (
+              <>
+                {" "}
+                Loadmore 
+              </>
+            )}
+          </button>
+        )}
+</div>
+
 </>
   )
 }
