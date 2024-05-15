@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { SearchContext } from '../Context/SearchContext'
 import Product from '../components/Product'
 
