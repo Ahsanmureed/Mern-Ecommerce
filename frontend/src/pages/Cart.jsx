@@ -130,7 +130,7 @@ const Cart = () => {
                     <h5 className=" text-[20px] font-medium">{auth?.user?.address}</h5>
                     <button
                       className=" bg-blue-500 text-white mb-1  px-2 mt-2 py-1 rounded-md"
-                      onClick={() => navigate("/dashboard/user/profile")}
+                      onClick={() => navigate(`/dashboard/${auth?.user?._id}`)}
                     >
                       Update Address
                     </button>
