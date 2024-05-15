@@ -6,15 +6,17 @@ import {useNavigate} from "react-router-dom"
 const Search = () => {
     const naviagate = useNavigate()
     const {search,setSearch}= useContext(SearchContext)
+    const [loader,setLoader]=useState(false)
     const handleSubmit =async(e)=>{
         e.preventDefault()
-        
+        setLoader(true)
    try {
      const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/search/${search.keyword}`)
+     setLoader(false)
      setSearch({...search, result:data})
      naviagate('/search')
    } catch (error) {
-    
+    setLoader(false)
    }
     }
   return (

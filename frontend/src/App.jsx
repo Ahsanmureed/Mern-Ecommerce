@@ -13,7 +13,7 @@ import ProtectedRoutes from './components/Routes/ProtectedRoutes';
 import ProductDetails from "./pages/ProductDetails"
 import Cart from './pages/Cart';
 import SearchResult from './pages/SearchResult';
-
+import ScrollToTop from './components/ScrollToTop';
 import Profile from './pages/Profile';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
@@ -24,6 +24,7 @@ const App = () => {
   return (
     <div>  
    <BrowserRouter>
+   <ScrollToTop/>
    <NavBar/>
    <Routes>
     <Route path='/' element={<Home/>}/>
