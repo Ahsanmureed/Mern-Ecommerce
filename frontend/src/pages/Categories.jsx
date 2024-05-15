@@ -1,12 +1,30 @@
-import React from 'react'
-import useCategory from '../hooks/useCategory'
+import axios from 'axios';
+import React, { useEffect, useState }   from 'react'
+
 import { Link } from 'react-router-dom';
+import LoaderLoader from '../components/LoaderLoader';
 
 const Categories = () => {
-    const categories= useCategory()
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const getCategories = async () => {
+    setLoading(true)
+        try {
+          const { data } = await axios.get(`${import.meta.env.VITE_URL}/api/v1/category/get-all-category`);
+          setLoading(false)
+          setCategories(data?.category);
+        } catch (error) {
+            setLoading(false);
+          console.log(error);
+        }
+      };
+      useEffect(()=>{
+getCategories();
+      },[])
    
   return (
-    <div className=' mt-24'>
+    <>
+    {loading ? <LoaderLoader/> : <div className=' mt-24'>
         <div className='  grid grid-cols-2  md:grid-cols-3 px-6 md:px-28 gap-6 '>
             {
                 categories?.map((category)=>(
@@ -14,7 +32,8 @@ const Categories = () => {
                 ))
             }
         </div>
-    </div>
+    </div>}
+    </>
   )
 }
 
