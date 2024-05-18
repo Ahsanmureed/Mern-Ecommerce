@@ -47,7 +47,7 @@ const ProductDetails = () => {
     {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>:  <div>
       <div className=" pt-28 md:flex items-center  md:px-8 ">
       <div>
-        <img className=" px-8 rounded-md  md:w-[60vh] md:h-[70vh]" src={`http://localhost:4000/download/${product.photo}`} alt="" />
+        <img className=" px-8 rounded-md  md:w-[60vh] md:h-[70vh]" src={`${import.meta.env.VITE_URL}/download/${product.photo}`} alt="" />
       </div>
       <div className=" md:w-[57vw]  px-8 w-[90vw] mt-9 md:mt-0 ">
         <h1 className=" text-3xl font-poppins font-semibold">
