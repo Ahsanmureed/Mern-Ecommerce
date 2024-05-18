@@ -6,42 +6,24 @@ import DropIn from "braintree-web-drop-in-react";
 import toast from 'react-hot-toast';
 import axios from "axios"
 const Cart = () => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart ,increaseCartItemQuantity,decreaseCartItemQuantity,removeCartItem} = useContext(CartContext);
   const { auth,setAuth } = useContext(AuthContext);
   const [clientToken,setClientToken]= useState('');
   const [instance, setInstance] = useState("");
  const [loading, setLoading] = useState(false);
   const navigate= useNavigate()
-  const totalPrice = () => {
-  
-
-    try {
-      let total = 0;
-      cart?.map((item,id) => {
-       
-        total = total + item.price;
-      });
-      return total.toLocaleString("en-US", {
-        style: "currency",
-        currency: "USD",
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const totalPrice = cart.reduce(
+    (acc, curr) => acc + parseInt(curr.total),
+    0
+  );
+  const totalQty = cart.reduce(
+    (acc, curr) => acc + parseInt(curr.qty),
+    0
+  );
 
  
-  const removeItem = (pid) => {
-    try {
-      let myCart = [...cart];
-      let index = myCart.findIndex((item) => item._id === pid);
-      myCart.splice(index, 1);
-      setCart(myCart);
-      localStorage.setItem("cart", JSON.stringify(myCart));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+ 
+ 
   useEffect(() => {
     getToken();
   }, [auth?.token]);
@@ -78,7 +60,7 @@ const Cart = () => {
       setLoading(false);
     }
   };
- 
+ console.log(cart);
   return (
     <div className=" mt-24">
       <div className=" text-center text-2xl">
@@ -101,27 +83,37 @@ const Cart = () => {
               <img className=" w-36" src={product.photo} alt="" />
               <div>
                 {" "}
-                <h1 className="mb-1 text-2xl font-semibold">{product.name}</h1>
-                <p className=" mb-1">{product.description.substring(0, 30)}</p>
+                <h1 className="mb-1 text-2xl font-semibold">{product.name.substring(0,30)}</h1>
+                <p className=" mb-1">{product.description.substring(0,40)}..</p>
                 <h3 className=" mb-2 font-medium">{product.price}$</h3>
+
+                <div className=" flex gap-2 mb-3">
+                <button className=" border-2 px-1.5 flex items-center justify-center text-center"  onClick={()=> decreaseCartItemQuantity(product._id)}>-</button>
+                <h1>{product.qty}</h1>
+                <button className=" border-2 px-1.5 flex items-center justify-center text-center" onClick={()=> increaseCartItemQuantity(product._id)}>+</button>
+
+                </div>
                 <button
-                  onClick={() => removeItem(product._id)}
+                  onClick={() => removeCartItem(product._id)}
                   className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
                 >
                   Remove
-                </button>{" "}
+                </button>
+                
+                
+                {" "}
               </div>
             </div>
           ))}
         </div>
-        <div className="">
+        <div className={` flex flex-col ${cart?.length === 0  ? 'mx-[24.5vw]' : ""} `} >
           <h1 className=" mt-5 text-3xl font-semibold text-center">
             Cart Summary
           </h1>
           <h1 className=" text-2xl text-center mt-2">Total | Checkout | Payment</h1>
           <hr className=" mt-2" />
           <h3 className=" text-center text-2xl font-medium mt-3">
-            Total: {totalPrice()}
+            Total: {totalPrice}$
           </h3>
           {auth?.user?.address ? (
                 <>

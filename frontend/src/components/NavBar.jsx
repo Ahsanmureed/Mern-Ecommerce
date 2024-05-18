@@ -68,6 +68,7 @@ const NavBar = () => {
 
 {auth?.user?<><Link to={"/login"} className="flex "  onClick={handleLogout}>Logout</Link> <Link to={`/dashboard/${auth?.user?._id}`} className="flex  " >Dashboard</Link></> :<><Link className=":flex  "  to={'/register'}>Singup</Link>
 <Link className="flex  "  to={'/login'}>Login</Link></> }
+{auth?.user?.role ===1 && (<Link to={"/admin/panel/all-prodcuts"}>Admin Panel</Link>) }
 <Link  className="  flex " to={"/cart"}>
   <FaShoppingCart className=" mr-3" />
   <div className=" absolute top-0  right-[10px]"><Badge

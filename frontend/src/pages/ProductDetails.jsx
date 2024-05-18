@@ -7,7 +7,7 @@ import { CartContext } from "../Context/CartContext";
 import toast from 'react-hot-toast';
 const ProductDetails = () => {
   const [loader,setLoader]=useState(false)
-  const {cart,setCart}= useContext(CartContext)
+  const {cart,setCart,addCartItem}= useContext(CartContext)
   const [product, setProduct] = useState([]);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const slug = useParams().slug;
@@ -60,7 +60,7 @@ const ProductDetails = () => {
         <div className="flex items-center gap-4 mt-4">
           {" "}
          
-          <button onClick={()=> {setCart([...cart,product]);  localStorage.setItem("cart",JSON.stringify([...cart,product]),toast.success("Item Added Successfully"))}} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
+          <button onClick={()=> addCartItem(product)} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="mr-2 h-6 w-6"

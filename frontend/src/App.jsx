@@ -17,6 +17,9 @@ import ScrollToTop from './components/ScrollToTop';
 import Profile from './pages/Profile';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
+import AdminPanel from './pages/AdminPanel';
+import AdminUserList from './pages/AdminUserList';
+import AdminProductList from './pages/AdminProductList';
 
 const App = () => {
 
@@ -32,7 +35,8 @@ const App = () => {
    
     <Route path='/dashboard/:id' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
    
-  
+    <Route path='/admin/panel/all-users' element={<AdminUserList/>}/>
+    <Route path='/admin/panel/all-prodcuts' element={<AdminProductList/>}/>
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>
     <Route path='/category/:slug' element={<Category/>}/>
