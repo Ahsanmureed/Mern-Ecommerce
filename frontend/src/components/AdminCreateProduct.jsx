@@ -37,7 +37,7 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
         }
       });
       
-      da
+      console.log('Image uploaded:', res.data);
     } catch (error) {
       console.error('Error uploading image:', error);
     }
