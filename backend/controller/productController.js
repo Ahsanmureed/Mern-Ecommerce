@@ -309,5 +309,22 @@ const productCategoryController = async (req, res) => {
   }
 };
 
+const getAllproducts = async(req,res)=>{
+    try {
+      const data = await productModel.find({});
+    res.status(200).json({
+      success:true,
+      message:"Success",
+      data
+    })
+    } catch (error) {
+      console.log(error);
+      res.status(400).send({
+        success: false,
+        error,
+        message: "Error While Getting products",
+      });
+    }
+}
 
-export {addProduct,getProductController,searchProductController,realtedProductController,getSingleProductController,deleteProductController,updateProductController,brainTreePaymentController,braintreeTokenController,productCategoryController}
+export {addProduct,getProductController,searchProductController,realtedProductController,getAllproducts,getSingleProductController,deleteProductController,updateProductController,brainTreePaymentController,braintreeTokenController,productCategoryController}

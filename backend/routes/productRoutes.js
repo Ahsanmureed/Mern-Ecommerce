@@ -1,9 +1,10 @@
 import express from "express";
-import { addProduct, deleteProductController,brainTreePaymentController,realtedProductController,searchProductController, getProductController, getSingleProductController,braintreeTokenController, updateProductController, productCategoryController } from "../controller/productController.js";
+import { addProduct, deleteProductController,brainTreePaymentController,realtedProductController,searchProductController, getProductController, getSingleProductController,braintreeTokenController, updateProductController, productCategoryController, getAllproducts } from "../controller/productController.js";
 const productRouter = express.Router();
 productRouter.post("/create",addProduct)
 productRouter.put("/:id",updateProductController)
 productRouter.get("/get-products",getProductController)
+productRouter.get("/get-all-products",getAllproducts)
 productRouter.get("/:slug",getSingleProductController)
 productRouter.delete("/:id",deleteProductController)
 productRouter.get("/search/:keyword", searchProductController);
