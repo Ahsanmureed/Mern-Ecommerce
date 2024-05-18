@@ -3,7 +3,6 @@ import { CgClose } from "react-icons/cg";
 import axios from "axios"
 const AdminCreateProduct = ({onClose,fetchData}) => {
   const upload_preset="ahsanhun";
-  // const [photo,setPhoto]= useState(null)
   
   const [data,setData] = useState({
     name : "",
@@ -26,7 +25,23 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
     setData({...data, [e.target.name]:e.target.value})
  }
 
-
+ const handleImage = async(e) => {
+  const image = e.target.files[0];
+  const formData = new FormData();
+    formData.append('image', image);
+    data.photo= image.name;
+    try {
+      const res = await axios.post(`${import.meta.env.VITE_URL}/api/upload`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      
+      da
+    } catch (error) {
+      console.error('Error uploading image:', error);
+    }
+};
  const handleSubmit = async(e)=>{
   e.preventDefault();
   try {
@@ -41,19 +56,10 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
   }
 }
 
-//  const handleImage = async(e)=>{
-//   const file  = e.target.files[0];
-//   const formData = new FormData()
-//   formData.append("file",file)
-//   formData.append("cloud_name","dib6srjdt")
-//   formData.append("upload_preset","ahsanhun")
- 
-//    const {data}= await axios.post("https://api.cloudinary.com/v1_1/dib6srjdt/image/upload",formData)
-//    setPhoto(data.secure_url,data.original_filename)
-  
-// }
+
 
   return (
+    
     <div className=' fixed w-full mt-8  h-[107vh] bg-slate-200 bg-opacity-35 top-[-3%] left-0 right-0 bottom-0 flex justify-center items-center z-20'>
       <div className='bg-white p-2 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
 
@@ -69,8 +75,8 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
                   <label htmlFor="name " className=' font-medium'>Name:</label>
                   <input onChange={handleChange} type="text " name='name' className='outline-none border-2 rounded-md  py-0.5 mt-2 mb-2' />
                   <label htmlFor="photo" className=' font-medium'> Photo:</label>
-                  {/* <input onChange={handleImage} type="file" className=' my-2  'id="" /> */}
-                  <input onChange={handleChange} type="text " name='photo' className='outline-none border-2 rounded-md  py-0.5 mt-2 mb-2' />
+                  <input onChange={handleImage} type="file" className=' my-2  'id="" />
+                  {/* <input onChange={handleChange} type="text " name='photo' className='outline-none border-2 rounded-md  py-0.5 mt-2 mb-2' /> */}
                   <label className=' font-medium' htmlFor="description">Description:</label>
                   <input onChange={handleChange} type="text " name='description'  className=' border-2 outline-none rounded-md  py-0.5 mt-2 ' />
                   <label className=' font-medium' htmlFor="price">Price:</label>
