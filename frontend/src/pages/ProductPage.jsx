@@ -17,7 +17,7 @@ const ProductPage = () => {
         const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/get-products`,{
           params:{
             page:page,
-            size:6
+            size:9
           }
         }
       
@@ -43,7 +43,7 @@ const ProductPage = () => {
          const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/get-products`,{
           params:{
             page:page,
-            size:6
+            size:9
           }
         }
       

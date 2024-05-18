@@ -19,9 +19,10 @@ const Search = () => {
     setLoader(false)
    }
     }
+    console.log(search);
   return (
    <form  onSubmit={handleSubmit}>
-    <input required autoCapitalize='none' autoComplete='off' autoCorrect='off'  value={search.keyword}  onChange={(e)=> setSearch({...search,keyword:e.target.value})} placeholder='Search' className=' px-1 outline-none border-2 rounded-lg py-1 w-[40vw] md:w-[27vw] mr-2' type="text" />
+    <input     value={search.keyword}  onChange={(e)=> setSearch({...search,keyword:e.target.value})} placeholder='Search' className=' px-1 outline-none border-2 rounded-lg py-1 w-[40vw] md:w-[27vw] mr-2' type="text" />
     <button type='submit' className=' px-2 py-1 md:px-4 md:py-1 bg-blue-500 text-white rounded-md '>Search</button>
   
    </form>

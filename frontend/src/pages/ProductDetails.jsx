@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const getProductDetails = async () => {
     setLoader(true)
    try {
-    const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/${slug}`);
+    const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product//product/${slug}`);
     setProduct(res.data.product);
     setLoader(false)
     getSimilarProduct(res.data?.product._id, res.data?.product.category._id);
