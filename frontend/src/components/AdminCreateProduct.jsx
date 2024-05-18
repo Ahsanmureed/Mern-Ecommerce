@@ -10,7 +10,7 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
     photo:"",
     description : "",
     category : "",
-    price : "",
+    price : 0,
     quantity : ""
   })
   const [categories,setCategories]= useState([]);
@@ -30,7 +30,7 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
  const handleSubmit = async(e)=>{
   e.preventDefault();
   try {
-    const res= await axios.post("http://localhost:4000/api/v1/product/create",data)
+    const res= await axios.post(`${import.meta.env.VITE_URL}/api/v1/product/create`,data)
 
     if(res.data.success){
       onClose()
