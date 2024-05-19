@@ -14,7 +14,7 @@ const ProductDetails = () => {
   const getProductDetails = async () => {
     setLoader(true)
    try {
-    const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product//product/${slug}`);
+    const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/product/${slug}`);
     setProduct(data.product);
   
     setLoader(false)
