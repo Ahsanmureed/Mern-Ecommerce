@@ -14,10 +14,11 @@ const ProductDetails = () => {
   const getProductDetails = async () => {
     setLoader(true)
    try {
-    const res = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product//product/${slug}`);
-    setProduct(res.data.product);
+    const {data} = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product//product/${slug}`);
+    setProduct(data.product);
+    console.log(data.product);
     setLoader(false)
-    getSimilarProduct(res.data?.product._id, res.data?.product.category._id);
+    getSimilarProduct(data.product._id, data.product.category);
    } catch (error) {
     
    }
@@ -40,7 +41,7 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-  
+  console.log(relatedProducts);
   return (
    <div>
 
