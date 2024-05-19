@@ -5,7 +5,7 @@ productRouter.post("/create",addProduct)
 productRouter.put("/:id",updateProductController)
 productRouter.get("/get-products",getProductController)
 productRouter.get("/get-all-products",getAllproducts)
-productRouter.get("/:slug",getSingleProductController)
+productRouter.get("/product/:slug",getSingleProductController)
 productRouter.delete("/:id",deleteProductController)
 productRouter.get("/search/:keyword", searchProductController);
 //payments routes
