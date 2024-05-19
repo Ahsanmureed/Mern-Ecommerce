@@ -14,7 +14,7 @@ export const SearchProvider= ({children})=>{
     useEffect(() => {
         
         const savedQuery = localStorage.getItem('search');
-    console.log(savedQuery);
+    
         
         if (savedQuery) {
             

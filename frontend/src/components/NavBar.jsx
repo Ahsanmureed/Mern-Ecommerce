@@ -55,7 +55,7 @@ const NavBar = () => {
     toast.success("Logout Successfully");
     localStorage.clear("auth");
   };
-  const isSearchDisabled = search === "";
+
   
   return (
     <div>
@@ -71,7 +71,7 @@ const NavBar = () => {
           <div>
             <form className=" block" onSubmit={handleSubmit}>
               <input
-                value={search.keyword}
+                value={window.location.pathname === '/' ? null : search.keyword}
                 
                 onChange={(e) =>
                   setSearch({ ...search, keyword: e.target.value })
