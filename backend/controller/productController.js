@@ -94,10 +94,10 @@ const addProduct = async (req, res) => {
   try {
     const product = await productModel
       .findOne({ slug: req.params.slug })
-      .populate("category");
+      
     res.status(200).send({
       success: true,
-      message: "Single Product Fetched",
+      message: "success",
       product,
     });
   } catch (error) {
@@ -241,6 +241,12 @@ const deleteProductController = async (req, res) => {
  const searchProductController = async (req, res) => {
   try {
     const { keyword } = req.params;
+    if(!keyword ){
+      res.status(401).json({
+        success:false,
+        message:"Please enter keyword"
+      })
+    }
     const resutls = await productModel
       .find({
         $or: [
@@ -248,8 +254,9 @@ const deleteProductController = async (req, res) => {
           { description: { $regex: keyword, $options: "i" } },
         ],
       })
+      
 
-    res.json(resutls);
+    res.json({resutls,keyword});
   } catch (error) {
     console.log(error);
     res.status(400).send({
