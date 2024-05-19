@@ -71,7 +71,7 @@ const NavBar = () => {
           <div>
             <form className=" block" onSubmit={handleSubmit}>
               <input
-                value={window.location.pathname === '/' ? null : search.keyword}
+                value={window.location.pathname === '/search'? search.keyword : null}
                 
                 onChange={(e) =>
                   setSearch({ ...search, keyword: e.target.value })
