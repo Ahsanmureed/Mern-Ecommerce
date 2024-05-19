@@ -1,12 +1,35 @@
-import {useState,createContext } from "react"
+import {useState,createContext, useEffect } from "react"
+import { json } from "react-router-dom";
 
 export const SearchContext = createContext();
 export const SearchProvider= ({children})=>{
     const [search,setSearch]= useState({
-        keyword:" ",
+        keyword:"",
         result:[]
     })
 
+
+
+
+    useEffect(() => {
+        
+        const savedQuery = localStorage.getItem('search');
+    console.log(savedQuery);
+        
+        if (savedQuery) {
+            
+            const parseData = JSON.parse(savedQuery);
+            setSearch({
+                ...search,
+                result:parseData.
+                    resutls,
+                keyword:parseData.keyword,
+                
+            })
+        }
+        
+    }, []);
+    
     return (
         <SearchContext.Provider value={{search,setSearch}}>
             {children}

@@ -19,17 +19,24 @@ import { CartContext } from "../Context/CartContext";
 
 const NavBar = () => {
   const navigate = useNavigate();
+  const [loading,setLoading]= useState(false)
   const { search, setSearch } = useContext(SearchContext);
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  setLoading(true)
     try {
       const { data } = await axios.get(
         `${import.meta.env.VITE_URL}/api/v1/product/search/${search.keyword}`
       );
-      setSearch({ ...search, result: data });
+      setLoading(false)
+      setSearch({ ...search, result: data.resutls });
+      localStorage.setItem('search', JSON.stringify(data));
       navigate("/search");
-    } catch (error) {}
+    
+    } catch (error) {
+      setLoading(false)
+
+    }
   };
 
   const { cart } = useContext(CartContext);
@@ -49,7 +56,7 @@ const NavBar = () => {
     localStorage.clear("auth");
   };
   const isSearchDisabled = search === "";
-  console.log(search);
+  
   return (
     <div>
       <Toaster />
@@ -74,9 +81,9 @@ const NavBar = () => {
                 type="text"
               />
               <button
-              
+              disabled={loading}
                 type="submit"
-                className="  px-4 py-1 bg-blue-500 text-white rounded-md "
+                className={` ${loading ? "bg-blue-700" :"bg-blue-500" } px-4 py-1  text-white rounded-md `}
               >
                 Search
               </button>

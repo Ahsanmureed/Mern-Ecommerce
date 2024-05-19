@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import bg from "../assets/images/bg.png"
 import ProductPage from './ProductPage'
 import Categories from './Categories'
+import { SearchContext } from '../Context/SearchContext'
 const Home = () => {
+  const {search,setSearch}= useContext(SearchContext)
   return (
     <div className=' '>
     <div className='md:flex-row w-auto h-[95vh]  md:h-[100vh]    md:px-16    flex-col-reverse flex md:flex items-center gap-24 md:justify-between  bg-gray-50  md:pt-20'>
@@ -12,6 +14,11 @@ const Home = () => {
             <button className=' mb-3  uppercase mx-auto text-white py-2  mt-3  hover:transition hover:scale-95 hover:duration-150 px-4 rounded-md flex bg-black text-center'>Shop Now</button>
         </div>
         <img className='     w-[65%] md:h-[86vh] h-[45vh]  md:w-[31vw]   ' src={bg} alt="" />
+        </div>
+
+        <div>
+        {JSON.stringify(search,null,4)}
+          
         </div>
         <h1 className=' text-3xl font-poppins font-semibold mt-9 mb-0'>Categories:</h1>
         <Categories/>
