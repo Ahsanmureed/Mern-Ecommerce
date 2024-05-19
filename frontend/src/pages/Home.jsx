@@ -15,11 +15,6 @@ const Home = () => {
         </div>
         <img className='     w-[65%] md:h-[86vh] h-[45vh]  md:w-[31vw]   ' src={bg} alt="" />
         </div>
-
-        <div>
-        {JSON.stringify(search,null,4)}
-          
-        </div>
         <h1 className=' text-3xl font-poppins font-semibold mt-9 mb-0'>Categories:</h1>
         <Categories/>
         <h1 className=' text-3xl font-poppins font-semibold mt-20 mb-10'>Products:</h1>
