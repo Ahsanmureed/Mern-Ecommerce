@@ -8,7 +8,7 @@ import axios from 'axios';
 const AdminProductCard = ({product,fetchData}) => {
   const [isEditOpen,setIsEditOpen]= useState(false)
   const handleDelete= async()=>{
-  await axios.delete(`http://localhost:4000/api/v1/product/${product._id}`)
+  await axios.delete(`${import.meta.env.VITE_URL}/api/v1/product/${product._id}`)
   fetchData();
   }
 

@@ -94,7 +94,7 @@ const [selectedImage, setSelectedImage] = useState(null);
                     selectedImage ? <div>
                        
                     <img src={selectedImage}   alt="Selected" width={100} height={100} />
-                  </div>: <img src={`http://localhost:4000/download/${data.photo}`} width={90} height={90} className='bg-slate-100 border '  alt="" />
+                  </div>: <img src={`${import.meta.env.VITE_URL}/download/${data.photo}`} width={90} height={90} className='bg-slate-100 border '  alt="" />
                   }
                   {/* <input onChange={handleChange} type="text " name='photo' className='outline-none border-2 rounded-md  py-0.5 mt-2 mb-2' /> */}
                   <label className=' font-medium' htmlFor="description">Description:</label>

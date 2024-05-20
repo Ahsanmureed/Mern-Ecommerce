@@ -116,7 +116,7 @@ const NavBar = () => {
             </>
           )}
           {auth?.user?.role === 1 && (
-            <Link to={"/admin/panel/all-prodcuts"}>Admin Panel</Link>
+            <Link to={`/admin/panel/all-prodcuts/${auth?.user?._id}`}>Admin Panel</Link>
           )}
           <Link className="  flex " to={"/cart"}>
             <FaShoppingCart className=" mr-3" />

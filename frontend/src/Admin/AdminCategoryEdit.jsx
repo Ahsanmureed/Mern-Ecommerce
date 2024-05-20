@@ -80,7 +80,7 @@ const AdminCategoryEdit = ({onClose,cat,fetchCat}) => {
                   selectedImage ? <div>
                      
                   <img src={selectedImage}  alt="Selected" width={100} height={100} />
-                </div>: <img src={`http://localhost:4000/download/${data.photo}`} width={90} height={90} className='bg-slate-100 border '  alt="" />
+                </div>: <img src={`${import.meta.env.VITE_URL}/download/${data.photo}`} width={90} height={90} className='bg-slate-100 border '  alt="" />
                  }
                  
                   

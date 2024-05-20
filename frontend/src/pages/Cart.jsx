@@ -80,7 +80,7 @@ const Cart = () => {
         <div>
           {cart?.map((product) => (
             <div className="  border-2 rounded-md md:w-[50vw] w-[95vw]  py-2 flex items-center md:gap-12 gap-6 mb-4">
-              <img className=" w-36" src={`http://localhost:4000/download/${product.photo}`} alt="" />
+              <img className=" w-36" src={`${import.meta.env.VITE_URL}/download/${product.photo}`} alt="" />
               <div>
                 {" "}
                 <h1 className="mb-1 text-2xl font-semibold">{product.name.substring(0,30)}</h1>

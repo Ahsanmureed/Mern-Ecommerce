@@ -12,7 +12,7 @@ const AdminCategoryCard = ({cat,fetchCat}) => {
   const [isEdit,setisEdit]=useState(false)
   return (
     <div className=' border border-transparent bg-gray-50 p-6 relative '>
-    <img className=' mx-auto w-44 h-48'  src={`http://localhost:4000/download/${cat.photo}`} alt="no" />
+    <img className=' mx-auto w-44 h-48'  src={`${import.meta.env.VITE_URL}/download/${cat.photo}`} alt="no" />
     <h1 className=' font-semibold'>{cat.name}</h1>
     
     <MdModeEdit onClick={ ()=> setisEdit(true)} className=' absolute bottom-7 right-7 text-[21px] cursor-pointer' />
