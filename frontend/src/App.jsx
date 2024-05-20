@@ -37,7 +37,7 @@ const App = () => {
    
     <Route path='/admin/panel/all-users' element={<AdminUserList/>}/>
     <Route path='/admin/panel/all-categories' element={<AdminCategories/>} />
-    <Route path='/admin/panel/all-prodcuts/:id' element={<AdminProductList/>}/>
+    <Route path='/admin/panel/all-prodcuts' element={<AdminProductList/>}/>
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>
     <Route path='/category/:slug' element={<Category/>}/>
