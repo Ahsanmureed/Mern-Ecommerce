@@ -98,4 +98,14 @@ const updateUser = async (req, res) => {
       });
     } catch (error) {}
   };
-export {signupUser,loginUser,updateUser}
+  const getAlluser= async(req,res)=>{
+
+        const data= await userModel.find({}, '-password');
+        res.status(200).json({
+            success:true,
+            message:"Successfully fetched all users",
+            data
+        })
+    
+  }
+export {signupUser,loginUser,updateUser,getAlluser}
