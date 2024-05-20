@@ -15,9 +15,9 @@ const AdminCategories = () => {
     fetchCategories();
   },[])
   return (
-    <div className=' mt-20 '>
+    <div className=' mt-20 pr-20 '>
       
-      <div  className=' flex items-end justify-end'><button onClick={()=>setCreateCategory(true)} className='  py-1 px-2 rounded-md text-white text-[20px] font-medium mb-4 bg-blue-500 overflow-hidden mr-6  '  >Create Category</button></div>
+      <div  className=' flex items-end justify-end'><button onClick={()=>setCreateCategory(true)} className='  py-1 px-2 rounded-md text-white text-[20px] font-medium mb-4 bg-blue-500 overflow-hidden   '  >Create Category</button></div>
    {createCategory ? <AdminCreateCategory fetchCat= {fetchCategories}  onClose={()=>setCreateCategory(false)}/> : ""}
 <div className='flex   items-start'> 
     <AdminPanel/>
@@ -27,7 +27,7 @@ const AdminCategories = () => {
 
 categories?.map((cat)=> { 
   return (
-    <AdminCategoryCard fetchCat={fetchCategories} className='gap-5' cat={cat}/>
+    <AdminCategoryCard fetchCat={fetchCategories}  cat={cat}/>
   )
 })
 }

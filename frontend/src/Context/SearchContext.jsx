@@ -21,8 +21,7 @@ export const SearchProvider= ({children})=>{
             const parseData = JSON.parse(savedQuery);
             setSearch({
                 ...search,
-                result:parseData.
-                    resutls,
+                result:parseData.resutls,
                 keyword:parseData.keyword,
                 
             })
