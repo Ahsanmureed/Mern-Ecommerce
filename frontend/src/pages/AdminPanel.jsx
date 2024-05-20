@@ -9,6 +9,8 @@ const AdminPanel = () => {
 
 <Link to={"/admin/panel/all-users"} className='px-2 py-1 hover:bg-slate-100'>All Users</Link>
                         <Link to={"/admin/panel/all-prodcuts"} className='px-2 py-1 hover:bg-slate-100'>All product</Link>
+                        <Link to={"/admin/panel/all-categories"} className='px-2 py-1 hover:bg-slate-100'>All Categories</Link>
+                        
 
    </div>
   )

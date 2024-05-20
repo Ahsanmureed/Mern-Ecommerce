@@ -20,6 +20,7 @@ import Category from './pages/Category';
 import AdminPanel from './pages/AdminPanel';
 import AdminUserList from './pages/AdminUserList';
 import AdminProductList from './pages/AdminProductList';
+import AdminCategories from './pages/AdminCategories';
 
 const App = () => {
 
@@ -36,6 +37,7 @@ const App = () => {
     <Route path='/dashboard/:id' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
    
     <Route path='/admin/panel/all-users' element={<AdminUserList/>}/>
+    <Route path='/admin/panel/all-categories' element={<AdminCategories/>} />
     <Route path='/admin/panel/all-prodcuts' element={<AdminProductList/>}/>
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>
