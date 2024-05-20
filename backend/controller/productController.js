@@ -129,7 +129,7 @@ const deleteProductController = async (req, res) => {
 
  const updateProductController = async (req, res) => {
   try {
-    const { name, description, price, category, quantity, shipping, photo } = req.body;
+    const { name, description, price, category, quantity, photo } = req.body;
     //alidation
     switch (true) {
       case !name:
@@ -157,11 +157,7 @@ const deleteProductController = async (req, res) => {
           success: false,
           message: "Quantity is required",
         });
-      case !photo:
-        return res.status(401).json({
-          success: false,
-          message: "Photo is required",
-        });
+     
     }
 
     const products = await productModel.findByIdAndUpdate(
