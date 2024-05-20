@@ -17,10 +17,9 @@ import ScrollToTop from './components/ScrollToTop';
 import Profile from './pages/Profile';
 import Categories from './pages/Categories';
 import Category from './pages/Category';
-import AdminPanel from './pages/AdminPanel';
-import AdminUserList from './pages/AdminUserList';
-import AdminProductList from './pages/AdminProductList';
-import AdminCategories from './pages/AdminCategories';
+import AdminCategories from "./Admin/AdminCategories"
+import AdminUserList from './Admin/AdminUserList';
+import AdminProductList from "./Admin/AdminProductList"
 
 const App = () => {
 
