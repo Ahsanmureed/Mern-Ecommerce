@@ -23,7 +23,7 @@ app.use(express.static("public"))
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:["https://mern-ecommerce-dqm5.vercel.app","http://localhost:5173"],
+    origin:"https://mern-ecommerce-dqm5.vercel.app",
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials:true,
     
