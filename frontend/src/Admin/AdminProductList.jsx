@@ -10,8 +10,7 @@ const AdminProductList = () => {
   const [products,setProducts]= useState([])
   const fetchProducts= async()=>{
     const {data}= await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/get-all-products`,{withCredentials:true})
-   setProducts(data.data
-   )
+   setProducts(data.data)
   } 
   useEffect(()=>{
 fetchProducts();
