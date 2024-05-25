@@ -18,6 +18,7 @@ const PaymentForm = ({total,auth}) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const handleSubmit = async (e) => {
+    
    e.preventDefault();
 
     if (!stripe || !elements) {
@@ -46,6 +47,8 @@ const PaymentForm = ({total,auth}) => {
       toast.success('Payment Success')
       setCart([]);
       localStorage.removeItem("cart")
+      setIsLoading(false)
+      navigate(`/orders/${auth?.user?._id}`)
      await axios.post(`${import.meta.env.VITE_URL}/api/v1/order/create-order`,{
       products:cart,
       payment:total,
@@ -65,8 +68,8 @@ const PaymentForm = ({total,auth}) => {
     <form onSubmit={handleSubmit}>
       <CardElement  className="p-3 border rounded-md focus:outline-none focus:border-blue-500" />
       {errorMessage && <div>{errorMessage}</div>}
-      <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mx-auto flex mt-2" type="submit" disabled={!stripe}>
-        Pay Now
+      <button className={`${isLoading  ? 'bg-blue-200' :'bg-blue-500'} hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mx-auto flex mt-2`} type="submit" disabled={isLoading}>
+        {isLoading ? 'Paying':"Pay Now"}
       </button>
     </form>
   )
