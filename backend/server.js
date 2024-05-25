@@ -23,7 +23,7 @@ app.use(express.static("public"))
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:"https://mern-ecommerce-dqm5.vercel.app",
+    origin:"http://localhost:5173",
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials:true,
     
@@ -32,9 +32,11 @@ app.use(cors({
 import categoryRouter from "./routes/categoryRoutes.js";
 import userRoute from "./routes/userRoutes.js";
 import productRouter from "./routes/productRoutes.js";
+import orderRoutes from "./routes/orderRoutes.js";
 app.use("/api/v1/auth",userRoute)
 app.use("/api/v1/product",productRouter)
 app.use("/api/v1/category",categoryRouter)
+app.use("/api/v1/order/",orderRoutes)
 
 // port
 const port = process.env.PORT
@@ -74,7 +76,7 @@ const storage = multer.diskStorage({
       }
     } catch (error) {
       console.error('Error downloading file:', error);
-      res.status(500).send('Internal server error.');
+      res.status(500).send('Internal server');
     }
   };
 
