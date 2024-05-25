@@ -10,7 +10,7 @@ import { Elements } from '@stripe/react-stripe-js';
 
 import PaymentForm from "../components/PaymentForm"
 const Cart = () => {
-  const stripePromise = loadStripe('pk_test_51PJERlAwncZRu9rkJT9UUUVRPo3ZvK3myUfftAZ6GvvsJKuI6r2Zp2LFvOIJt22dS23p64wNF72iryTlTiL8cBMS00dG2utwid');
+  const stripePromise = loadStripe(import.meta.env.SRIPE_KEY);
   const { cart, setCart ,increaseCartItemQuantity,decreaseCartItemQuantity,removeCartItem} = useContext(CartContext);
   const { auth,setAuth } = useContext(AuthContext);
  
