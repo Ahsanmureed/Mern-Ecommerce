@@ -68,8 +68,8 @@ const PaymentForm = ({total,auth}) => {
     <form onSubmit={handleSubmit}>
       <CardElement  className="p-3 border rounded-md focus:outline-none focus:border-blue-500" />
       {errorMessage && <div>{errorMessage}</div>}
-      <button className={`${isLoading  ? 'bg-blue-200' :'bg-blue-500'} hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mx-auto flex mt-2`} type="submit" disabled={isLoading}>
-        {isLoading ? 'Paying':"Pay Now"}
+      <button className={`${isLoading  ? 'bg-blue-300' :'bg-blue-500'} hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md mx-auto flex mt-2`} type="submit" disabled={isLoading}>
+        {isLoading ? 'Processing':"Pay Now"}
       </button>
     </form>
   )
