@@ -2,14 +2,16 @@ import React, { useContext,useEffect, useState } from "react";
 import { AuthContext } from "../Context/UserContext";
 import { CartContext } from "../Context/CartContext";
 import {useNavigate} from "react-router-dom"
-
-
+import DropIn from "braintree-web-drop-in-react";
+import toast from 'react-hot-toast';
+import axios from "axios"
 import {loadStripe} from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 
 import PaymentForm from "../components/PaymentForm"
 const Cart = () => {
-  const stripePromise = loadStripe(import.meta.env.SRIPE_KEY);
+  
+  const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_KEY);
   const { cart, setCart ,increaseCartItemQuantity,decreaseCartItemQuantity,removeCartItem} = useContext(CartContext);
   const { auth,setAuth } = useContext(AuthContext);
  
