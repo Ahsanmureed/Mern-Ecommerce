@@ -1,18 +1,12 @@
 import productModel from "../models/productModel.js";
 import slugify from "slugify"
 import orderModel from "../models/orderModel.js";
-import braintree from "braintree";
+import Stripe from 'stripe';
 import dotenv from "dotenv";
 import categoryModel from "../models/categoryModel.js";
 dotenv.config();
 
-//payment gateway
-var gateway = new braintree.BraintreeGateway({
-  environment: braintree.Environment.Sandbox,
-  merchantId: process.env.BRAINTREE_MERCHANT_ID,
-  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
-  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
-});
+
 const addProduct = async (req, res) => {
 
     const { name, description, price, category, quantity, shipping, photo } =
@@ -182,85 +176,66 @@ const deleteProductController = async (req, res) => {
   }
 
 };
+const stripe = new Stripe('sk_test_51PJERlAwncZRu9rktB0mVZh1md7XrSWz8TQ8nwCli5e7tGyqAHNH3LA42MQinWj3IdLw9TDbiFEWEhuIimOCtb3w00IWNyXZGe', {
+  apiVersion: '2020-08-27',
+});
 
-//payment gateway api
-//token
- const braintreeTokenController = async (req, res) => {
-  try {
-    gateway.clientToken.generate({}, function (err, response) {
-      if (err) {
-        res.status(500).send(err);
-      } else {
-        res.send(response);
-      }
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
+const stripeController =async(req,res)=>{
+ 
 
-//payment
- const brainTreePaymentController = async (req, res) => {
   try {
-    const { nonce, cart } = req.body;
-    let total = 0;
-    cart.map((i) => {
-      total += i.price;
+    const { amount, currency, paymentMethodId } = req.body;
+
+    // Create a PaymentIntent
+    const paymentIntent = await stripe.paymentIntents.create({
+      amount,
+      currency,
+      payment_method: paymentMethodId,
+      confirm: true,
     });
-    
-    let newTransaction = gateway.transaction.sale(
-      {
-        amount: total,
-        paymentMethodNonce: nonce,
-        options: {
-          submitForSettlement: true,
-        },
-      },
-      function (error, result) {
-        if (result) {
-          const order = new orderModel({
-            products: cart,
-            payment: result,
-            
-          }).save();
-          res.json({ ok: true });
-        } else {
-          res.status(500).send(error);
-        }
-      }
-    );
+
+    // Handle success
+    res.status(200).json({ message: 'Payment successful', paymentIntent });
   } catch (error) {
-    console.log(error);
+    // Handle error
+    console.error(error);
+    res.status(500).json({ error: 'Payment failed' });
   }
-};
+}
+
+
 // search product
  const searchProductController = async (req, res) => {
-  try {
-    const { keyword } = req.params;
-    if(!keyword ){
-      res.status(401).json({
-        success:false,
-        message:"Please enter keyword"
-      })
-    }
-    const resutls = await productModel
-      .find({
-        $or: [
-          { name: { $regex: keyword, $options: "i" } },
-          { description: { $regex: keyword, $options: "i" } },
-        ],
-      })
-      
+  try{
+    const query = req.query.q 
 
-    res.json({resutls,keyword});
-  } catch (error) {
-    console.log(error);
-    res.status(400).send({
-      success: false,
-      message: "Error In Search Product API",
-      error,
-    });
-  }
+    const regex = new RegExp(query,'i','g')
+
+    const product = await productModel.find({
+        "$or" : [
+            {
+                name : regex
+            },
+            {
+                description : regex
+            }
+        ]
+    })
+
+
+    res.json({
+        data  : product ,
+        message : "Search Product list",
+        error : false,
+        success : true
+    })
+}catch(err){
+    res.json({
+        message : err.message || err,
+        error : true,
+        success : false
+    })
+}
 };
 // similar products
  const realtedProductController = async (req, res) => {
@@ -330,4 +305,4 @@ const getAllproducts = async(req,res)=>{
     }
 }
 
-export {addProduct,getProductController,searchProductController,realtedProductController,getAllproducts,getSingleProductController,deleteProductController,updateProductController,brainTreePaymentController,braintreeTokenController,productCategoryController}
+export {addProduct,getProductController,searchProductController,realtedProductController,getAllproducts,getSingleProductController,deleteProductController,updateProductController,productCategoryController,stripeController,}
