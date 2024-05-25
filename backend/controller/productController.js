@@ -176,7 +176,7 @@ const deleteProductController = async (req, res) => {
   }
 
 };
-const stripe = new Stripe('sk_test_51PJERlAwncZRu9rktB0mVZh1md7XrSWz8TQ8nwCli5e7tGyqAHNH3LA42MQinWj3IdLw9TDbiFEWEhuIimOCtb3w00IWNyXZGe', {
+const stripe = new Stripe(process.env.SRIPE_KEY, {
   apiVersion: '2020-08-27',
 });
 
