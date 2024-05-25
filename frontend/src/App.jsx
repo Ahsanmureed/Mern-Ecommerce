@@ -20,6 +20,8 @@ import Category from './pages/Category';
 import AdminCategories from "./Admin/AdminCategories"
 import AdminUserList from './Admin/AdminUserList';
 import AdminProductList from "./Admin/AdminProductList"
+import AdminAllOrders from './Admin/AdminAllOrders';
+import UserOrders from './User/UserOrders';
 
 const App = () => {
 
@@ -34,9 +36,11 @@ const App = () => {
     <Route path='/login' element={!auth.user ? <Login/> : <Dashboard/>}/>
    
     <Route path='/dashboard/:id' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
-   
+    <Route path='/orders/:id' element={<ProtectedRoutes><UserOrders/></ProtectedRoutes>}/>
+
     <Route path='/admin/panel/all-users' element={<AdminUserList/>}/>
     <Route path='/admin/panel/all-categories' element={<AdminCategories/>} />
+    <Route path='/admin/panel/all-orders' element={<AdminAllOrders/>} />
     <Route path='/admin/panel/all-prodcuts' element={<AdminProductList/>}/>
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>

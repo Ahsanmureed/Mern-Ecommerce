@@ -5,62 +5,36 @@ import {useNavigate} from "react-router-dom"
 import DropIn from "braintree-web-drop-in-react";
 import toast from 'react-hot-toast';
 import axios from "axios"
+import {loadStripe} from '@stripe/stripe-js';
+import { Elements } from '@stripe/react-stripe-js';
+
+import PaymentForm from "../components/PaymentForm"
 const Cart = () => {
+  const stripePromise = loadStripe('pk_test_51PJERlAwncZRu9rkJT9UUUVRPo3ZvK3myUfftAZ6GvvsJKuI6r2Zp2LFvOIJt22dS23p64wNF72iryTlTiL8cBMS00dG2utwid');
   const { cart, setCart ,increaseCartItemQuantity,decreaseCartItemQuantity,removeCartItem} = useContext(CartContext);
   const { auth,setAuth } = useContext(AuthContext);
-  const [clientToken,setClientToken]= useState('');
-  const [instance, setInstance] = useState("");
- const [loading, setLoading] = useState(false);
+ 
   const navigate= useNavigate()
-  const totalPrice = cart.reduce(
+  let totalPrice = cart.reduce(
     (acc, curr) => acc + parseInt(curr.total),
     0
   );
+
+  const cents= ()=>{
+   return totalPrice*100
+  }
   const totalQty = cart.reduce(
     (acc, curr) => acc + parseInt(curr.qty),
     0
   );
 
- 
- 
- 
-  useEffect(() => {
-    getToken();
-  }, [auth?.token]);
 
- //get payment gateway token
- const getToken = async () => {
-  try {
-    const { data } = await axios.get(`${import.meta.env.VITE_URL}/api/v1/product/braintree/token`);
-    setClientToken(data?.clientToken);
-  } catch (error) {
-    console.log(error);
-  }
-};
 
-  //handle payments
-  const handlePayment = async () => {
-    try {
-      setLoading(true);
-      const { nonce } = await instance.requestPaymentMethod();
-      const { data } = await axios.post(`${import.meta.env.VITE_URL}/api/v1/product/braintree/payment`, {
-        nonce,
-        cart,
-        auth
-       
-      });
-      setLoading(false);
-      localStorage.removeItem("cart");
-      setCart([]);
-      toast.success("Payment Successfull")
-      navigate("/cart");
-      // toast.success("Payment Completed Successfully ");
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-    }
-  };
- console.log(cart);
+
+ 
+
+
+ 
   return (
     <div className=" mt-24">
       <div className=" text-center text-2xl">
@@ -146,31 +120,12 @@ const Cart = () => {
                   )}
                 </div>
               )}
-              <div className=" mr-[4px]">
-                {!clientToken || !auth?.token || !cart?.length ? (
-                  ""
-                ) : (
-                  <div className=" md:w-[28vw] w-[97.2vw]">
-                    <DropIn
-                      options={{
-                        authorization: clientToken,
-                        paypal: {
-                          flow: "vault",
-                        },
-                      }}
-                      onInstance={(instance) => setInstance(instance)}
-                    />
+             {
+              cart?.length <1 ? "": <Elements total={totalPrice} auth={auth} stripe={stripePromise}>
 
-                    <button
-                      className=" bg-blue-500 px-3 py-2 text-[18px] mt-3 mb-2 text-white rounded-md flex mx-auto"
-                      onClick={handlePayment}
-                      disabled={loading || !instance || !auth?.user?.address}
-                    >
-                      {loading ? "Processing ...." : "Make Payment"}
-                    </button>
-                  </div>
-                )}
-                </div>
+                <PaymentForm auth={auth} total={totalPrice}/>
+              </Elements>
+             }
         </div>
       </div>
     </div>

@@ -4,10 +4,10 @@ import App from './App.jsx'
 import './index.css'
 import { AuthProvider } from './Context/UserContext'
 import { CartProvider } from './Context/CartContext.jsx'
-import { SearchProvider } from './Context/SearchContext.jsx'
+
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <SearchProvider>
+
   <CartProvider>
   <AuthProvider>
     <React.StrictMode>
@@ -17,5 +17,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   </AuthProvider>
   </CartProvider>
   
-  </SearchProvider>
+
 )

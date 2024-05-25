@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
-import { SearchContext } from "../Context/SearchContext";
+
 import axios from "axios";
 import { IoCloseSharp } from "react-icons/io5";
 import { IoIosSearch } from "react-icons/io";
@@ -20,25 +20,30 @@ import { CartContext } from "../Context/CartContext";
 const NavBar = () => {
   const navigate = useNavigate();
   const [loading,setLoading]= useState(false)
-  const { search, setSearch } = useContext(SearchContext);
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-  setLoading(true)
-    try {
-      const { data } = await axios.get(
-        `${import.meta.env.VITE_URL}/api/v1/product/search/${search.keyword}`
-      );
-      setLoading(false)
-      setSearch({ ...search, result: data.resutls });
-      localStorage.setItem('search', JSON.stringify(data));
-      navigate("/search");
+  const searchInput = useLocation()
+  const URLSearch = new URLSearchParams(searchInput?.search)
+  const searchQuery = URLSearch.getAll("q")
+  const [search,setSearch] = useState(searchQuery)
+  const handleChange = async (e) => {
     
-    } catch (error) {
-      setLoading(false)
-
-    }
+  
+  const { value } = e.target
+  setSearch(value)
+    
+    
+    
   };
-
+const handleSubmit =(e)=>{
+  
+  e.preventDefault()
+  if(search !== ""){
+    navigate(`/search?q=${search}`)
+  }
+  else{
+    navigate("/")
+  }
+ 
+}
   const { cart } = useContext(CartContext);
   const { auth, setAuth } = useContext(AuthContext);
   const [menu, setMenu] = useState(false);
@@ -55,12 +60,13 @@ const NavBar = () => {
     toast.success("Logout Successfully");
     localStorage.clear("auth");
   };
+ 
 
   
   return (
     <div>
       <Toaster />
-      <nav className=" flex items-center shadow-md h-16 pl-2 md:px-3 justify-between fixed w-full top-0 bg-white z-10">
+      <nav className=" flex items-center  h-16 shadow-md  pl-2 md:px-3 justify-between fixed w-full top-0 bg-white z-10">
         <div>
           <Link to={"/"}>
             <img src={logo} alt="" />
@@ -69,12 +75,12 @@ const NavBar = () => {
 
         <ul className=" md:flex hidden items-center gap-8 text-[21px] font-poppins ">
           <div>
-            <form className=" block" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className=" block" >
               <input
-                value={window.location.pathname === '/search'? search.keyword : null}
                 
-                onChange={(e) =>
-                  setSearch({ ...search, keyword: e.target.value })
+                value={search}
+                onChange={
+                  handleChange
                 }
                 placeholder="Search"
                 className=" px-1 outline-none border-2 rounded-lg py-1 w-[25vw] mr-2"
@@ -132,18 +138,16 @@ const NavBar = () => {
               onClick={() => setSearchOpen(!searchOpen)}
             />
             {searchOpen && (
-              <form
-                className=" duration-1000 ease-in-out  fixed left-0 items-center justify-center top-0 right-0 w-screen bg-gray-100 pl-1 pr-0  py-4 z-30 [h-10vh] "
-                onSubmit={handleSubmit}
+              <form  onSubmit={handleSubmit}
+                className="  duration-500 fixed left-0 items-center justify-center top-0 right-0 w-screen bg-gray-100 pl-1 pr-0  py-4 z-30 [h-10vh] "
+                
               >
                 <input
-                  required
-                  autoCapitalize="none"
-                  autoComplete="off"
-                  autoCorrect="off"
-                  value={search.keyword}
-                  onChange={(e) =>
-                    setSearch({ ...search, keyword: e.target.value })
+                  
+                 
+                  value={search}
+                  onChange={handleChange
+                    
                   }
                   placeholder="Search"
                   className=" px-1 font-medium  outline-none border-2 rounded-md py-[5px] w-[60vw] md:w-[27vw] mr-2"
@@ -170,9 +174,9 @@ const NavBar = () => {
             </div>
           </Link>
 
-          <div className=" md:hidden text-2xl" onClick={showMenu}>
-            <IoMenu className="md:hidden" />
-            {menu && <Menu />}
+          <div className=" md:hidden text-2xl" >
+            <IoMenu onClick={()=> setMenu(true)} className=" md:hidden" />
+            {menu ? <Menu isOpen={menu}   onclose={()=> setMenu(false)}/>: ""}
           </div>
         </div>
       </nav>

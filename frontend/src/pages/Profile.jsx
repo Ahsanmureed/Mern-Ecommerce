@@ -4,6 +4,7 @@ import {AuthContext} from "../Context/UserContext"
 import axios from "axios"
 import toast from 'react-hot-toast';
 import {useParams} from "react-router-dom"
+import UserPanel from '../User/UserPanel';
 const Profile = () => {
   const id= useParams().id;
     const {auth,setAuth}= useContext(AuthContext)
@@ -55,9 +56,11 @@ const Profile = () => {
   };
     
   return (
-    <div className='pt-28 md:px-10 flex gap-20'>
-     
-        <div className='md:w-[70vw] w-[95vw]  md:h-[75vh] '>
+    <div className='pt-28 md:px-10 flex   gap-20'>
+     <div className=' hidden md:inline-block'>
+     <UserPanel />
+     </div>
+        <div className='md:w-[70vw] w-[95vw]  md:h-[75vh] md:ml-[5vw] md:pr-[15vw] '>
             <h1 className=' text-center text-3xl font-poppins font-normal uppercase'>User Profile</h1>
               <form className='gap-3 w-[95vw] md:w-[30vw] border-2  py-10 px-14 mx-auto mt-4 text-center  flex flex-col' onSubmit={update}>
                 <input  onChange={(e) => setUsername(e.target.value)} className=' border-2 py-1' value={username} type="text" name='username' />

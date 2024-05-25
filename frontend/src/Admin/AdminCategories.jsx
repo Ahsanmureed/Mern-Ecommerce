@@ -15,7 +15,7 @@ const AdminCategories = () => {
     fetchCategories();
   },[])
   return (
-    <div className=' mt-20 pr-20 '>
+    <div className=' mt-[74px] pr-20 '>
       
       <div  className=' flex items-end justify-end'><button onClick={()=>setCreateCategory(true)} className='  py-1 px-2 rounded-md text-white text-[20px] font-medium mb-4 bg-blue-500 overflow-hidden   '  >Create Category</button></div>
    {createCategory ? <AdminCreateCategory fetchCat= {fetchCategories}  onClose={()=>setCreateCategory(false)}/> : ""}

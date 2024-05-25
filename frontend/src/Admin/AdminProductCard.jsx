@@ -15,7 +15,7 @@ const AdminProductCard = ({product,fetchData}) => {
   return (
     <div className=' border border-transparent bg-gray-50 p-6 relative '>
       <img className=' mx-auto w-44 h-48'  src={`${import.meta.env.VITE_URL}/download/${product.photo}`} alt="no" />
-      <h1 className=' font-semibold'>{product.name.substring(0, 40)}..</h1>
+      <h1 className=' font-semibold'>{product.name.substring(0, 20)}..</h1>
       <h1 className=' font-bold'>{product.price}$ </h1>
       <MdModeEdit onClick={()=> setIsEditOpen(true)} className=' absolute bottom-7 right-7 text-[21px] cursor-pointer' />
       <MdDelete onClick={handleDelete} className=' absolute bottom-7 text-[21px] right-1 cursor-pointer'/>
