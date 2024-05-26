@@ -125,7 +125,7 @@ const handleSubmit =(e)=>{
           )}
           <Link className="  flex " to={"/cart"}>
             <FaShoppingCart className=" mr-3" />
-            <div className=" absolute top-0  right-[10px]">
+            <div className=" absolute top-[-2%]  right-[5px]">
               <Badge count={cart?.length} showZero></Badge>
             </div>
           </Link>
