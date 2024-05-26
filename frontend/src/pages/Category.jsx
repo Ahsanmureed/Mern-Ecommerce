@@ -30,9 +30,10 @@ useEffect(()=>{
     <div>
         {
 loader? <div  className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>  : <div className=' mt-20'>
-<h1 className=' text-3xl font-poppins font-semibold uppercase'>{cat.name}</h1>
+<h1 className=' text-3xl font-poppins mb-2  mt-5 font-semibold uppercase underline underline-offset-auto'>{products.length <1 ?'':cat.name + ':'}</h1>
 
-<div className='  md:grid md:grid-cols-3'>
+{
+    products.length <1 ?<h1 className='text-2xl py-5 text-center font-semibold'>No Products Available in this Category</h1>:<div className='  md:grid md:grid-cols-3'>
     
     {
         products?.map((product)=>(
@@ -40,6 +41,7 @@ loader? <div  className="h-[80vh] flex justify-center items-center w-full"><Load
         ))
     }
 </div>
+}
 </div>
     }
     </div>

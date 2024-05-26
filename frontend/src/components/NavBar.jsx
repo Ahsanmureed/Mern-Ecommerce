@@ -24,6 +24,7 @@ const NavBar = () => {
   const URLSearch = new URLSearchParams(searchInput?.search)
   const searchQuery = URLSearch.getAll("q")
   const [search,setSearch] = useState(searchQuery)
+  
   const handleChange = async (e) => {
     
   
