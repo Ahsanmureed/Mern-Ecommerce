@@ -38,7 +38,7 @@ const handleSubmit =async (e)=>{
     
    } catch (error) {
     setLoading(false)
-    toast.error("User Already Registered")
+    toast.error(error.response.data.message);
     
    }
 }

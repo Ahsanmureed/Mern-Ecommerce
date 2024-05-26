@@ -35,8 +35,8 @@ const Cart = () => {
 
  
   return (
-    <div className=" mt-24">
-      <div className=" text-center text-2xl">
+    <div className=" mt-24 ">
+      <div className=" text-center text-2xl ">
         <h1 className=" font-semibold">
           {auth?.user ? `Hello ${auth.user.username}` : ""}
         </h1>
@@ -79,7 +79,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className={` flex flex-col ${cart?.length === 0  ? 'mx-[24.5vw]' : ""} `} >
+        <div className={` flex mx-auto  ${cart?.length <1 ? 'md:mx-[24.4vw]':"md:mx-0"}   flex-col `} >
           <h1 className=" mt-5 text-3xl font-semibold text-center">
             Cart Summary
           </h1>
@@ -120,7 +120,7 @@ const Cart = () => {
                 </div>
               )}
              {
-              cart?.length <1 ? "": <Elements total={totalPrice} auth={auth} stripe={stripePromise}>
+             auth?.user === null  || cart?.length <1  ?  "": <Elements total={totalPrice} auth={auth} stripe={stripePromise}>
 
                 <PaymentForm auth={auth} total={totalPrice}/>
               </Elements>

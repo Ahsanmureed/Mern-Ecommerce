@@ -26,6 +26,7 @@ const Login = () => {
                email:inputs.email,
                password:inputs.password
             },{withCredentials:true})
+          console.log(res.data.message);
            if(res.data.success){
             toast.success(res.data.message)
             navigate(Location.state|| '/')
@@ -34,11 +35,12 @@ const Login = () => {
         token:res.data.token})
         localStorage.setItem("auth",JSON.stringify(res.data))
            }
-           else{
-            toast("Invalid Credentials")
+           else {
+            toast.error(res.data.message)
            }
+        
         } catch (error) {
-            console.log(error);
+            toast.error(error.response.data.message);
             setLoading(false);
         }
     }
