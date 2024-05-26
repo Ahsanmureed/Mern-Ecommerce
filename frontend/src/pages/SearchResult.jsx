@@ -30,7 +30,7 @@ const SearchResult = () => {
    return (
    <>
    {
-    loader ? <div><LoaderLoader/></div>: <> <div className='pt-24 '><h1 className=' text-center  text-3xl font-poppins font-bold'>{products === " " && products <1 ? "No Products Found":`found ${products?.length} Products`}</h1>
+    loader ? <div><LoaderLoader/></div>: <> <div className='pt-24 '><h1 className=' text-center  text-3xl font-poppins font-bold'>{products === " " && products <1 ? "No Products Found":`Found ${products?.length} Products`}</h1>
     <div className=' md:grid md:grid-cols-3'>
     {products?.map((product)=>  (
      <div className='  flex items-center justify-center'><Product product={product}/></div>
