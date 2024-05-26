@@ -66,7 +66,7 @@ const handleSubmit =(e)=>{
   return (
     <div>
       <Toaster />
-      <nav className=" flex items-center  h-16 shadow-md  pl-2 md:px-3 justify-between fixed w-full top-0 bg-white z-10">
+      <nav className=" flex items-center  h-16 shadow-md  pl-2 md:px-1 justify-between fixed w-full top-0 bg-white z-10">
         <div>
           <Link to={"/"}>
             <img src={logo} alt="" />
@@ -98,9 +98,7 @@ const handleSubmit =(e)=>{
           <Link className="flex " to={"/"}>
             Home
           </Link>
-          <Link className="flex " to={"/categories"}>
-            Categories
-          </Link>
+          
 
           {auth?.user ? (
             <>

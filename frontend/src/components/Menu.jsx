@@ -19,7 +19,7 @@ const Menu = ({onclose}) => {
        <div className=' flex text-4xl mt-4  justify-end'> <IoCloseSharp onClick={onclose} /></div>
           <ul className=' flex items-center flex-col gap-20 text-2xl font-medium mt-28'>
        <Link onClick={onclose} to={'/'}><li className=' uppercase'>Home</li></Link>
-      <Link onClick={onclose} to={'/categories'}><li className=' uppercase'>Categories</li></Link> 
+      
          
        {auth.user?(<> <Link onClick={onclose} className=' uppercase' to={`/dashboard/${auth?.user._id}`}>Dashboard</Link> <Link onClick={onclose} className=' uppercase' to={`/orders/${auth?.user?._id}`}>My Orders</Link>  <Link onClick={onclose} to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link to={'/register'}><li className=' uppercase'>Register</li></Link>
      <Link onClick={onclose} to={'/login'}><li  className=' uppercase'>Login</li></Link></>)}

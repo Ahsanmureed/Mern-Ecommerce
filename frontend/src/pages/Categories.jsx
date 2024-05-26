@@ -21,14 +21,19 @@ const Categories = () => {
       useEffect(()=>{
 getCategories();
       },[])
-   
+
   return (
     <>
-    {loading ? <LoaderLoader/> : <div className=' mt-24'>
-        <div className='    flex items-center text-center gap-6 '>
+    {loading ? <LoaderLoader/> : <div className=' mt-10 mb-20'>
+        <div className='    flex  text-center items-center md:gap-8 scrollbar-none  gap-9 overflow-auto md:overflow-hidden     px-1 md:px-6 '>
             {
                 categories?.map((category)=>(
-                    <div className='        font-poppins font-semibold    '><Link  key={category._id} to={`/category/${category.slug}`}><img className='w-28 rounded-full border-2 border-transparent bg-gray-100' src={`${import.meta.env.VITE_URL}/download/${category.photo}`} alt="" /></Link><h1>{category.name}</h1></div>
+                  <Link to={`/category/${category.slug}`} className='cursor-pointer' key={category._id}>
+                  <div className='w-24 h-24 md:w-20 md:h-20 rounded-full overflow-hidden p-4 bg-slate-200 flex items-center justify-center'>
+                      <img src={`${import.meta.env.VITE_URL}/download/${category.photo}`} alt={'Product Image'} className='h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all'/>
+                  </div>
+                  <p className='text-center text-base font-medium md:text-base capitalize'>{category.name}</p>
+              </Link>
                 ))
             }
         </div>

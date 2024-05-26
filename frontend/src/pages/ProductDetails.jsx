@@ -41,14 +41,14 @@ const ProductDetails = () => {
       console.log(error);
     }
   };
-  console.log(relatedProducts);
+  
   return (
    <div>
 
     {loader ? <div className="h-[80vh] flex justify-center items-center w-full"><LoaderLoader/></div>:  <div>
       <div className=" pt-28 md:flex items-center  md:px-8 ">
-      <div>
-        <img className=" px-8 rounded-md  md:w-[60vh] md:h-[70vh]" src={`${import.meta.env.VITE_URL}/download/${product.photo}`} alt="" />
+      <div className=" flex items-center justify-center">
+        <img className=" px-8 rounded-md    border-2 bg-gray-50 border-transparent md:w-[29vw] lg:w-[37vw]  md:h-[70vh]" src={`${import.meta.env.VITE_URL}/download/${product.photo}`} alt="" />
       </div>
       <div className=" md:w-[57vw]  px-8 w-[90vw] mt-9 md:mt-0 ">
         <h1 className=" text-3xl font-poppins font-semibold">
@@ -82,8 +82,8 @@ const ProductDetails = () => {
       </div>
       
     </div>
-    {relatedProducts.length >0 ? <div>
-    <h1 className=" text-3xl mt-10 mb-5 font-semibold">Similar Products</h1>
+    {relatedProducts.length >0 ? <div className="md:mt-10 mt-20">
+    <h1 className=" text-3xl mt-10 mb-5 font-semibold underline underline-offset-auto">Similar Products:</h1>
     
     <div className=" md:grid grid-cols-3">
     {relatedProducts?.map((product)=>(
