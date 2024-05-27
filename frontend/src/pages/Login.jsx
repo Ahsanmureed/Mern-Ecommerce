@@ -32,8 +32,9 @@ const Login = () => {
             navigate(Location.state|| '/')
             setAuth({...auth,
             user:res.data.user,
-        token:res.data.token})
-        localStorage.setItem("auth",JSON.stringify(res.data))
+       })
+        localStorage.setItem("auth",JSON.stringify(res.data.user))
+        localStorage.setItem('token',JSON.stringify(res.data.token))
            }
            else {
             toast.error(res.data.message)
