@@ -7,7 +7,7 @@ export const AuthProvider= ({children})=>{
         user:null,
         
     })
-    const token = localStorage.getItem('token')
+    const token = JSON.parse(localStorage.getItem('token'))
       //default axios
   axios.defaults.headers.common["Authorization"] = token
     useEffect(()=>{
