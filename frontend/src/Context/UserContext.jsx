@@ -28,26 +28,26 @@ export const AuthProvider= ({children})=>{
     
           if (token) {
             try {
-              // Decode the token to get its payload
+             
               const decodedToken = jwtDecode(token);
-              // Extract the expiration time from the payload
-              const expirationTime = decodedToken.exp * 1000; // Convert to milliseconds
-              // Compare the expiration time with the current time
+             
+              const expirationTime = decodedToken.exp * 1000; 
+              
               const currentTime = new Date().getTime();
     
               if (currentTime >= expirationTime) {
-                // Token is expired, remove it from local storage
+                
                 localStorage.removeItem('token');
                 localStorage.removeItem('auth');
               }
             } catch (error) {
-              // Handle decoding errors
+              
               console.error('Error decoding token:', error);
             }
           }
         };
     
-        // Call the function to check token expiration when the component mounts
+        
         checkTokenExpiration();
       }, []);
       
