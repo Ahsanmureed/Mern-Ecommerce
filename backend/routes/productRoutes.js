@@ -1,9 +1,10 @@
 import express from "express";
 import { addProduct, deleteProductController,realtedProductController,searchProductController, getProductController, getSingleProductController, updateProductController, productCategoryController, getAllproducts, stripeController } from "../controller/productController.js";
+import { requireSignIn } from "../Middlewares/verifyToken.js";
 
 const productRouter = express.Router();
-productRouter.post("/create",addProduct)
-productRouter.put("/:id",updateProductController)
+productRouter.post("/create",requireSignIn,addProduct)
+productRouter.put("/:id",requireSignIn,updateProductController)
 productRouter.get("/get-products",getProductController)
 productRouter.get("/get-all-products",getAllproducts)
 productRouter.get("/product/:slug",getSingleProductController)

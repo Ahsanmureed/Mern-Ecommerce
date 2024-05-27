@@ -46,7 +46,7 @@ const loginUser =async(req,res)=>{
     // validation
     if( !email || !password){
         return res.status(401).json({
-            success :true,
+            success :false,
             message:"Please enter required fields"
         })
     }
@@ -64,7 +64,7 @@ const loginUser =async(req,res)=>{
                 message:"Password is Incorrect"
             })
         }
-        const token  = jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:"1hr"});
+        const token  = jwt.sign({id:user._id},process.env.JWT_SECRET_KEY,{expiresIn:"12h"});
         res.status(200).send({
             success: true,
             message: "login successfully",
