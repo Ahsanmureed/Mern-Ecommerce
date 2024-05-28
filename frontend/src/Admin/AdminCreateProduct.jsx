@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CgClose } from "react-icons/cg";
 import axios from "axios"
+import toast from 'react-hot-toast';
 const AdminCreateProduct = ({onClose,fetchData}) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -14,8 +15,13 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
   })
   const [categories,setCategories]= useState([]);
   const getCategories = async()=>{
+   try {
     const {data}= await axios.get(`${import.meta.env.VITE_URL}/api/v1/category/get-all-category`)
     setCategories(data.category)
+ 
+   } catch (error) {
+    
+   }
     
   }
   useEffect(()=>{
@@ -57,9 +63,11 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
     if(res.data.success){
       onClose()
         fetchData()
+        toast.success(res.data.message)
     }
   } catch (error) {
-    console.log(error);
+   
+    toast.error(error.response.data.message)
   }
 }
 

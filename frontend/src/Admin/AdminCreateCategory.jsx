@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { CgClose } from "react-icons/cg";
 import axios from "axios"
+import toast from 'react-hot-toast';
 const AdminCreateCategory = ({onClose,fetchCat}) => {
 
   const [selectedImage, setSelectedImage] = useState(null);
@@ -28,7 +29,7 @@ const AdminCreateCategory = ({onClose,fetchCat}) => {
       reader.readAsDataURL(image);
     }
     try {
-      const res = await axios.post(`http://localhost:4000/api/upload`, formData, {
+      const res = await axios.post(`${import.meta.env.VITE_URL}/api/upload`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
@@ -47,9 +48,11 @@ const AdminCreateCategory = ({onClose,fetchCat}) => {
     if(res.data.success){
       onClose()
       fetchCat()
+toast.success(res.data.message)
     }
   } catch (error) {
-    console.log(error);
+    
+    toast.error(error.response.data.message)
   }
 }
 

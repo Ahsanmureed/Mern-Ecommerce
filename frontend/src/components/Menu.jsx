@@ -8,9 +8,10 @@ const Menu = ({onclose}) => {
     setAuth({
       ...auth,
       user:null,
-      token:''
+     
     })
     localStorage.clear("auth")
+    // localStorage.clear("token")
   }
      
   const {auth,setAuth} = useContext(AuthContext)
