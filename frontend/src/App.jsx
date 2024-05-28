@@ -22,6 +22,7 @@ import AdminUserList from './Admin/AdminUserList';
 import AdminProductList from "./Admin/AdminProductList"
 import AdminAllOrders from './Admin/AdminAllOrders';
 import UserOrders from './User/UserOrders';
+import AdminPrivateRoutes from './components/Routes/AdminPrivateRoutes'
 
 const App = () => {
 
@@ -38,10 +39,10 @@ const App = () => {
     <Route path='/dashboard/:id' element={<ProtectedRoutes><Dashboard/></ProtectedRoutes>}/>
     <Route path='/orders/:id' element={<ProtectedRoutes><UserOrders/></ProtectedRoutes>}/>
 
-    <Route path='/admin/panel/all-users' element={<AdminUserList/>}/>
-    <Route path='/admin/panel/all-categories' element={<AdminCategories/>} />
-    <Route path='/admin/panel/all-orders' element={<AdminAllOrders/>} />
-    <Route path='/admin/panel/all-prodcuts' element={<AdminProductList/>}/>
+    <Route path='/admin/panel/all-users' element={<AdminPrivateRoutes><AdminUserList/></AdminPrivateRoutes>}/>
+    <Route path='/admin/panel/all-categories' element={<AdminPrivateRoutes><AdminCategories/></AdminPrivateRoutes>} />
+    <Route path='/admin/panel/all-orders' element={<AdminPrivateRoutes><AdminAllOrders/></AdminPrivateRoutes>} />
+    <Route path='/admin/panel/all-prodcuts' element={<AdminPrivateRoutes><AdminProductList/></AdminPrivateRoutes>}/>
     <Route path='/product/:slug' element={<ProductDetails/>}/>
     <Route path='/cart' element={<Cart/>}/>
     <Route path='/category/:slug' element={<Category/>}/>

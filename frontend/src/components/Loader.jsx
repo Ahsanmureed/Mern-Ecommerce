@@ -2,13 +2,13 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import {useNavigate} from "react-router-dom"
 import { useLocation } from "react-router-dom";
-const Loader = () => {
+const Loader = ({path='login'}) => {
   
   const Location = useLocation();
   const Navigate = useNavigate();
 useEffect(()=>{
   setTimeout(()=>{
-    Navigate("/login",{state:Location.pathname})
+    Navigate(`/${path}`,{state:Location.pathname})
 },1000)
 },[])
     return (
