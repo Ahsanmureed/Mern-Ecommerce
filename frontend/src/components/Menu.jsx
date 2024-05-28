@@ -22,7 +22,7 @@ const Menu = ({onclose}) => {
        <Link onClick={onclose} to={'/'}><li className=' uppercase'>Home</li></Link>
       
          
-       {auth.user?(<> <Link onClick={onclose} className=' uppercase' to={`/dashboard/${auth?.user._id}`}>Dashboard</Link> <Link onClick={onclose} className=' uppercase' to={`/orders/${auth?.user?._id}`}>My Orders</Link>  <Link onClick={onclose} to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link to={'/register'}><li className=' uppercase'>Register</li></Link>
+       {auth.user?(<> <Link onClick={onclose} className=' uppercase' to={`/dashboard/${auth?.user._id}`}>Dashboard</Link> <Link onClick={onclose} className=' uppercase' to={`/orders/${auth?.user?._id}`}>My Orders</Link>  <Link onClick={onclose} to={"/login"}><li onClick={handleLogout} className=' uppercase'>Logout</li></Link></>):(<> <Link onClick={onclose} to={'/register'}><li className=' uppercase'>Register</li></Link>
      <Link onClick={onclose} to={'/login'}><li  className=' uppercase'>Login</li></Link></>)}
       </ul>
       
