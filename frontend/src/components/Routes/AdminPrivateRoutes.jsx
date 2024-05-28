@@ -9,6 +9,6 @@ export default function AdminPrivateRoutes({children}) {
 
  
     const token = JSON.parse(localStorage.getItem('auth'))
-  return token?.role ==1 ? children : <Loader path={`dashboard/${auth?.user?._id}`}/>
+  return token?.role ==1 ? children : <Loader path={`dashboard/${token._id}`}/>
    
 }
