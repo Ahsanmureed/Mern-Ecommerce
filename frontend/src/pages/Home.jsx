@@ -9,7 +9,7 @@ const Home = () => {
     <div className=' '>
     <div className='md:flex-row w-auto h-[83vh]  md:h-[100vh]     md:px-16    flex-col-reverse flex md:flex items-center md:gap-24 gap-12 md:justify-between  bg-gray-50  md:pt-20'>
         <div>
-            <h1 className=' text-[21px]  text-center'>#NEW SUMMER COLLECTION 20224</h1>
+            <h1 className=' text-[21px]  text-center'>#NEW SUMMER COLLECTION 2024</h1>
             <h1 className=' text-center  text-4xl md:text-7xl font-semibold'>ARRIVALS SALES</h1>
             <button className='  uppercase mx-auto text-white py-2  mt-3  hover:transition hover:scale-95 hover:duration-150 px-4 rounded-md flex bg-black text-center mb-5'>Shop Now</button>
         </div>
