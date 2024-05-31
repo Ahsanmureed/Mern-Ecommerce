@@ -7,7 +7,7 @@
 
 .hh{
   text-decoration: underline;
-  text-underline-offset: 7px;
+  text-underline-offset: 8px;
 }
 .scrollbar-none::-webkit-scrollbar{
   display: none;
