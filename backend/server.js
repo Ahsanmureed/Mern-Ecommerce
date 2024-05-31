@@ -1,4 +1,4 @@
-import app from "./app.js";
+
 import express from "express"
 import cookieParser from "cookie-parser";
 import cors from "cors"
@@ -9,7 +9,7 @@ import path from "path";
 import fs from "fs"
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-
+const app = express();
 // DataBase Connection
 import connection from "./DataBase/DbConnection.js";
 connection();
@@ -23,7 +23,7 @@ app.use(express.static("public"))
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin:"https://mern-ecommerce-dqm5.vercel.app",
+  origin:"https://mern-ecommerce-dqm5.vercel.app",
     methods: ["GET", "PUT", "DELETE", "POST"],
     credentials:true,
     
