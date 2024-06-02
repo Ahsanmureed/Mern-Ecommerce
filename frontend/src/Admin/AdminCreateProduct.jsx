@@ -106,15 +106,15 @@ const AdminCreateProduct = ({onClose,fetchData}) => {
                    <label className=' font-medium' htmlFor="quantity">Quantity:</label>
                    <input onChange={handleChange} name='quantity' type="text" className='outline-none border-2 rounded-md  py-0.5 mt-2 ' />
                    <label   htmlFor="categories" className=' font-medium mt-2 mb-1'>Categories:</label>
-                   <select onChange={handleChange}    className='p-2 outline-none bg-slate-100 border rounded' required  name="category" id="">
-                    
+                   <select  onChange={handleChange}      className='p-2 outline-none bg-slate-100 border rounded' required  name="category" id="">
+                   <option value={""}>Select Category</option>
                    
     {
-      categories?.map((cat,index)=> { return (
+      categories?.map((cat)=>   (
         
-<option value={cat._id} key={index}>{cat.name}</option>
-
-      )} ) 
+<option value={cat?._id} key={cat._id}>{cat.name}</option>
+ 
+      ) ) 
     }
                     
                    </select>
