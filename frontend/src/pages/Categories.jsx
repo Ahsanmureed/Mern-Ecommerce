@@ -24,6 +24,7 @@ getCategories();
 
   return (
     <>
+    
     {loading ? <LoaderLoader/> : <div className=' mt-10 mb-20'>
         <div className='    flex  text-center items-center md:gap-8 scrollbar-none  gap-9 overflow-auto md:overflow-hidden     px-1 md:px-6 '>
             {

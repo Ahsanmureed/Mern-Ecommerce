@@ -85,7 +85,7 @@ const AdminCategoryEdit = ({onClose,cat,fetchCat}) => {
                  
                   
 
-                   <button type='submit' className=' bg-blue-600 text-white mt-2.5 py-1.5 rounded-md w-[40%] hover:bg-blue-900 mx-auto px-3'>Create</button>
+                   <button type='submit' className=' bg-blue-600 text-white mt-2.5 py-1.5 rounded-md w-[40%] hover:bg-blue-900 mx-auto px-3'>Update</button>
                 </form>
             </div>
       </div>
