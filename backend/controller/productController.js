@@ -141,11 +141,7 @@ const deleteProductController = async (req, res) => {
           success: false,
           message: "Price is required",
         });
-      case !category:
-        return res.status(401).json({
-          success: false,
-          message: "Category is Required",
-        });
+      
       case !quantity:
         return res.status(401).json({
           success: false,
