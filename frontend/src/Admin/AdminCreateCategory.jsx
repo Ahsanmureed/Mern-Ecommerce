@@ -60,10 +60,10 @@ toast.success(res.data.message)
 
   return (
     
-    <div className=' fixed w-full mt-8  h-[107vh] bg-slate-200 bg-opacity-35 top-[-3%] left-0 right-0 bottom-0 flex justify-center items-center z-20'>
-      <div className='bg-white p-2 rounded w-full max-w-2xl h-full max-h-[80%] overflow-hidden'>
+    <div className=' fixed w-full  mt-8 h-[88vh] bg-slate-200 bg-opacity-35 top-auto left-0 right-0 bottom-0 flex justify-center items-center z-20'>
+    <div className='bg-white p-2 rounded w-full max-w-2xl h-full overflow-x-hidden  overflow-scroll  '>
 
-      <div className='flex justify-between items-center mb-0 flex-col relative'>
+    <div className='flex justify-between   items-center mb-0 flex-col relative'>
                 <h2 className='font-bold text-lg mb-2'>Upload Category</h2>
                 <div className=' absolute top-3 right-3 text-2xl hover:text-red-600 cursor-pointer' onClick={onClose} >
                     <CgClose/>
