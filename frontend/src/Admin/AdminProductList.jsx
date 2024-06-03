@@ -35,7 +35,7 @@ fetchProducts();
     <div className=' flex   items-start  '>
        <AdminPanel/>
  
-       <div className=' grid grid-cols-4 gap-5'>{products?.map((product,index)=> ( <div className=' flex items-center justify-center'><AdminProductCard fetchData= {fetchProducts} key={index}  product={product} /></div>))}</div>
+       <div className=' grid grid-cols-4 gap-4'>{products?.map((product,index)=> ( <div className=' flex items-center justify-center'><AdminProductCard fetchData= {fetchProducts} key={index}  product={product} /></div>))}</div>
  
  
  
