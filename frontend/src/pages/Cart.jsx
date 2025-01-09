@@ -79,7 +79,7 @@ const Cart = () => {
             </div>
           ))}
         </div>
-        <div className={` flex mx-auto  ${cart?.length <1 ? 'md:mx-[24.4vw]':"md:mx-0"}   flex-col `} >
+        <div className={` flex mx-auto  ${cart?.length <1 ? 'md:mx-[28.5vw]':"md:mx-0"}   flex-col `} >
           <h1 className=" mt-5 text-3xl font-semibold text-center">
             Cart Summary
           </h1>

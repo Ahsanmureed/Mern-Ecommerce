@@ -12,9 +12,9 @@ const updateCart = (newCart) => {
 const addCartItem = (item) => {
   const check = cart.some((el) => el._id === item._id);
   if (check) {
-    toast.error("Already Item in Cart");
+    toast.error("Item already in Cart");
   } else {
-    toast.success("Item Add successfully");
+    toast.success("Item Added successfully");
     const updatedCart = [
       ...cart,
       { ...item, qty: 1, total: item.price },

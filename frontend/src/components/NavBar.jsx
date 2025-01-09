@@ -24,7 +24,6 @@ const NavBar = () => {
   const URLSearch = new URLSearchParams(searchInput?.search)
   const searchQuery = URLSearch.getAll("q")
   const [search,setSearch] = useState(searchQuery)
-  
   const handleChange = async (e) => {
     
   
@@ -46,6 +45,10 @@ const handleSubmit =(e)=>{
  
 }
   const { cart } = useContext(CartContext);
+  const totalItems = cart.reduce((acc,item)=>{
+       return acc + item.qty
+   
+  },0)
   const { auth, setAuth } = useContext(AuthContext);
   const [menu, setMenu] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -126,7 +129,7 @@ const handleSubmit =(e)=>{
           <Link className="  flex " to={"/cart"}>
             <FaShoppingCart className=" mr-3" />
             <div className=" absolute top-[-2%]  right-[5px]">
-              <Badge count={cart?.length} showZero></Badge>
+              <Badge count={totalItems} showZero></Badge>
             </div>
           </Link>
         </ul>
@@ -169,7 +172,7 @@ const handleSubmit =(e)=>{
           <Link className="   flex " to={"/cart"}>
             <FaShoppingCart className=" mr-3" />
             <div className=" absolute top-0  right-[26px] md:top-0  md:right-1.5">
-              <Badge count={cart?.length} showZero></Badge>
+              <Badge count={totalItems} showZero></Badge>
             </div>
           </Link>
 
