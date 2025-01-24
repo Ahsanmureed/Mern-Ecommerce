@@ -6,6 +6,7 @@ export const SearchProvider= ({children})=>{
     const [search,setSearch]= useState({
         keyword:"",
         result:[]
+        
     })
 
 
